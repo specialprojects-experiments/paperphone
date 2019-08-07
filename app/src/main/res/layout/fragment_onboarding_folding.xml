@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16.9sp"
+        android:textColor="#000000"
+        android:fontFamily="@font/worksans_regular"
+        android:gravity="center_horizontal"
+        android:text="@string/onboarding_folding"
+    />
+
+    <ImageView
+        android:layout_marginTop="32dp"
+        android:id="@+id/animation"
+        android:layout_width="262dp"
+        android:layout_height="204dp"
+        android:src="@drawable/folding_animation" />
+
+</LinearLayout>

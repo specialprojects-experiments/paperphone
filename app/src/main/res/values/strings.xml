@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">Paper Phone</string>
+    <string name="notes">Notes</string>
+    <string name="maps_info">Print maps and directions onto\nthe back of your paper phone.</string>
+    <string name="contacts_info">Choose which contacts you want\nto print to your paper phone.\nLong press for settings.</string>
+    <string name="calendar_info">Choose the calendars you want\nto print to your paper phone.\nLong press for settings.</string>
+    <string name="weather_info">Add the weather for today,\nbased on your location.\nLong press for settings.</string>
+    <string name="tasks_info">Add reminders from your\nGoogle Tasks lists.\nLong press for settings.</string>
+    <string name="notes_info">Add an empty space to your paper\nphone to capture thoughts and ideas.</string>
+    <string name="photos_info">Add a screenshot or picture\nto your paper phone.\nLong press to change.</string>
+    <string name="contactless_info">Print cut-out marks to store your\ncontactless card inside your paper phone.</string>
+    <string name="paper_apps_info">Choose an app to print\nonto your paper phone.\nLong press for settings.</string>
+    <string name="item_calendar">Calendar</string>
+    <string name="item_contacts">Contacts</string>
+    <string name="item_maps">Maps</string>
+    <string name="item_tasks">Tasks</string>
+    <string name="photos">Photos</string>
+    <string name="item_weather">Weather</string>
+    <string name="item_contactless">Contactless</string>
+    <string name="item_paperapps">Paper Apps</string>
+    <string name="create_pdf">Create PDF</string>
+    <string name="folding_instructions_label">Folding Instructions</string>
+    <string name="next">Next</string>
+    <string name="your_name">YOUR NAME</string>
+    <string name="ok">Ok</string>
+    <string name="current_location">Current Location</string>
+    <string name="going_to">Going to</string>
+    <string name="maps_instructions">Print maps and directions onto\nthe back of your paper phone.</string>
+    <string name="global_instructions">Tap to select the things you want \nto print to your paper phone.\nLong press an
+        icon for settings.
+    </string>
+    <string name="print">PRINT</string>
+    <string name="folding">FOLDING</string>
+    <string name="folding_instructions">To fold your phone, lay the page map\nside up and fold it in half so the two\n
+        little circles at the bottom of the page\ntouch.\n\nThen fold in half again so the squares\nare touching.\n\nThen fold
+        in half one last time.
+    </string>
+    <string name="done">Done</string>
+    <string name="choose_gaccount">Please choose the Google account you wish to use.</string>
+    <string name="onboarding_folding">This experiment prints a\nlittle paper phone with the\nmost important information\nyou\'ll need for the day.
+    </string>
+    <string name="onboarding_selecting">Just choose the information\nyou would like to include on\nyour paper phone and\n
+        hit print.
+    </string>
+    <string name="onboarding_welcome">Practice spending a little time\naway from your phone.</string>
+</resources>

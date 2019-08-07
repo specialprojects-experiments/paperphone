@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="papar_apps_names">
+        <item>Conversion Charts</item>
+        <item>Knots</item>
+        <item>Italian Phrasebook</item>
+        <item>Sign Language</item>
+        <item>Multiplication Table</item>
+        <item>Recipe</item>
+        <item>Origami Pigeon</item>
+        <item>Sudoku</item>
+        <item>Maze</item>
+        <item>Word of the day</item>
+        <item>Anagram</item>
+        <item>Riddle</item>
+        <item>Typography</item>
+    </string-array>
+    <integer-array name="paper_apps_res">
+        <item>@drawable/conversion_charts</item>
+        <item>@drawable/knots</item>
+        <item>@drawable/italian_phrasebook</item>
+        <item>@drawable/sign_language</item>
+        <item>@drawable/multiplication_table</item>
+        <item>@drawable/recipe</item>
+        <item>@drawable/pigeon_origami</item>
+        <item>@drawable/sudoku</item>
+        <item>@drawable/maze</item>
+        <item>@drawable/word_of_the_day</item>
+        <item>@drawable/anagram</item>
+        <item>@drawable/riddle</item>
+        <item>@drawable/typography</item>
+
+    </integer-array>
+</resources>

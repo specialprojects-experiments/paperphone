@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent" xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <com.withgoogle.experiments.unplugged.ui.widget.ModuleView
+            android:id="@+id/module"
+            android:layout_marginTop="32dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_marginTop="36dp"
+            android:id="@+id/origin_label"
+            android:text="@string/current_location"
+            android:textSize="12.4sp"
+            android:textColor="@color/black"
+            android:letterSpacing="0.16"
+            android:fontFamily="@font/varela_regular"
+            android:textAllCaps="true"
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <View
+            android:layout_marginTop="4dp"
+            android:layout_width="230dp"
+            android:layout_height="2dp"
+            android:background="@color/black" />
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/current_location"
+            android:textSize="16.2sp"
+            android:textColor="@color/black"
+            android:letterSpacing="-0.01"
+            android:fontFamily="@font/worksans_regular"
+            tools:text="London,\nUnited Kingdom"
+            android:gravity="center_horizontal"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:layout_marginTop="36dp"
+            android:id="@+id/destination_label"
+            android:text="@string/going_to"
+            android:textSize="12.4sp"
+            android:textColor="@color/black"
+            android:letterSpacing="0.16"
+            android:fontFamily="@font/varela_regular"
+            android:textAllCaps="true"
+            android:gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <View
+            android:layout_marginTop="4dp"
+            android:layout_width="230dp"
+            android:layout_height="2dp"
+            android:background="@color/black" />
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/destination_location"
+            android:textSize="16.2sp"
+            android:textColor="@color/black"
+            android:letterSpacing="-0.01"
+            android:fontFamily="@font/worksans_regular"
+            tools:text="London,\nUnited Kingdom"
+            android:gravity="center_horizontal"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="108dp"
+        android:textSize="14.2sp"
+        android:textColor="#000000"
+        android:gravity="center_horizontal"
+        android:text="@string/maps_instructions" />
+
+</FrameLayout>

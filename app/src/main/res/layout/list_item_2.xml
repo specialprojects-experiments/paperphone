@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.withgoogle.experiments.unplugged.ui.widget.CheckableLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp"
+    android:gravity="center_horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <CheckBox
+        android:id="@+id/check"
+        android:layout_width="9.8dp"
+        android:layout_height="9.8dp"
+        android:button="@null"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/list_item_circle_selector" />
+
+    <TextView
+        android:id="@+id/first"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/ListItem"
+        tools:text="WORK" />
+
+    <TextView
+        android:id="@+id/second"
+        style="@style/ListSubItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="5 tasks" />
+
+</com.withgoogle.experiments.unplugged.ui.widget.CheckableLinearLayout>

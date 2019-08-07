@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingTop="24dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.HomeActivity">
+
+    <TextView
+        style="@style/Title"
+        android:id="@+id/person_name"
+        tools:text="Gonçalo's phone"
+        android:textAllCaps="true"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_marginTop="2dp"
+        style="@style/Subtitle"
+        tools:text="Monday 22nd, July"
+        android:id="@+id/selected_date"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:paddingTop="80dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+        <com.withgoogle.experiments.unplugged.ui.widget.ModuleView
+            android:id="@+id/maps"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content" />
+
+        <com.withgoogle.experiments.unplugged.ui.widget.ModuleView
+            android:layout_marginStart="@dimen/dashboard_item_margin"
+            android:id="@+id/contacts"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content" />
+
+        <com.withgoogle.experiments.unplugged.ui.widget.ModuleView
+            android:layout_marginStart="@dimen/dashboard_item_margin"
+            android:id="@+id/calendar"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:paddingTop="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+        <com.withgoogle.experiments.unplugged.ui.widget.ModuleView
+            android:id="@+id/weather"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content" />
+
+        <com.withgoogle.experiments.unplugged.ui.widget.ModuleView
+            android:layout_marginStart="@dimen/dashboard_item_margin"
+            android:id="@+id/tasks"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content" />
+
+        <com.withgoogle.experiments.unplugged.ui.widget.ModuleView
+            android:layout_marginStart="@dimen/dashboard_item_margin"
+            android:id="@+id/notes"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:paddingTop="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+        <com.withgoogle.experiments.unplugged.ui.widget.ModuleView
+            android:id="@+id/photos"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content" />
+
+        <com.withgoogle.experiments.unplugged.ui.widget.ModuleView
+            android:id="@+id/contactless"
+            android:layout_marginStart="@dimen/dashboard_item_margin"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content" />
+
+        <com.withgoogle.experiments.unplugged.ui.widget.ModuleView
+            android:id="@+id/paper_apps"
+            android:layout_marginStart="@dimen/dashboard_item_margin"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="24dp">
+
+        <LinearLayout
+            android:layout_gravity="bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_marginTop="48dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/module_info"
+                android:textSize="14.2sp"
+                android:textColor="@color/black"
+                android:gravity="center_horizontal"
+                android:text="@string/global_instructions"
+            />
+
+            <TextView
+                android:layout_marginTop="12dp"
+                android:id="@+id/selected_account"
+                tools:text="goncalo@waterdog.mobi"
+                android:textSize="10sp"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:layout_marginTop="16dp"
+                android:id="@+id/generatePdf"
+                android:text="@string/print"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+
+</LinearLayout>
