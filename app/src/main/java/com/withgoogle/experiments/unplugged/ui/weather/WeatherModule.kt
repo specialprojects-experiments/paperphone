@@ -5,6 +5,8 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import android.graphics.Rect
+import android.graphics.RectF
 import androidx.core.content.res.ResourcesCompat
 import com.withgoogle.experiments.unplugged.R
 import com.withgoogle.experiments.unplugged.data.integrations.weather.WeatherDataSource
@@ -16,7 +18,8 @@ import com.withgoogle.experiments.unplugged.util.weatherFormat
 import java.time.LocalDate
 import android.graphics.drawable.VectorDrawable
 import androidx.core.graphics.withSave
-import timber.log.Timber
+
+private const val ICON_SIZE = 19F
 
 class WeatherModule(
     val forecasts: List<ThreeHourForecast>,
@@ -37,7 +40,6 @@ class WeatherModule(
             vectorDrawable.intrinsicHeight, Bitmap.Config.ARGB_8888
         )
         val canvas = Canvas(bitmap)
-        canvas.density = 4096
         vectorDrawable.setBounds(0, 0, canvas.width, canvas.height)
         vectorDrawable.draw(canvas)
         return bitmap
@@ -93,8 +95,12 @@ class WeatherModule(
                     val drawable = ResourcesCompat.getDrawable(resources, R.drawable.ic_cloudy, null) as VectorDrawable
 
                     drawable.let {
-                        Timber.d("Canvas density: ${canvas.density}")
-                        canvas.drawBitmap(getBitmap(drawable), 2F, 4F, Paint())
+                        val bitmap = getBitmap(drawable)
+
+                        val srcRect = Rect(0, 0, bitmap.width, bitmap.height)
+                        val destRect = RectF(0F, 6F, ICON_SIZE, 6F + ICON_SIZE)
+
+                        canvas.drawBitmap(bitmap, srcRect, destRect, Paint())
                     }
 
                     translate(26F, 3F)
