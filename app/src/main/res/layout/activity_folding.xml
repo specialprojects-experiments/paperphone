@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
         android:layout_marginTop="84dp"
@@ -12,13 +12,15 @@
         android:text="@string/folding"
     />
 
-    <ImageView
-        android:layout_gravity="center_horizontal"
+    <com.airbnb.lottie.LottieAnimationView
         android:layout_marginTop="220dp"
+        android:layout_gravity="center_horizontal"
         android:id="@+id/animation"
         android:layout_width="130dp"
         android:layout_height="98dp"
-        android:src="@drawable/folding_animation" />
+        app:lottie_rawRes="@raw/smiling"
+        app:lottie_loop="true"
+        app:lottie_autoPlay="true" />
 
     <TextView
         android:layout_width="wrap_content"
