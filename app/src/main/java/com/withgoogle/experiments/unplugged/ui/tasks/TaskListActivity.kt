@@ -1,6 +1,7 @@
 package com.withgoogle.experiments.unplugged.ui.tasks
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -30,6 +31,10 @@ class TaskListActivity: AppCompatActivity() {
         moduleView.isChecked = true
 
         loadTaskLists()
+
+        findViewById<View>(R.id.finish).setOnClickListener {
+            finish()
+        }
     }
 
     private val tasksAdapter = TaskListAdapter {

@@ -1,4 +1,4 @@
-package com.withgoogle.experiments.unplugged.ui.pdf
+package com.withgoogle.experiments.unplugged.ui.contactless
 
 import android.content.res.Resources
 import android.graphics.Canvas
@@ -7,6 +7,7 @@ import android.graphics.DashPathEffect
 import android.graphics.Paint
 import androidx.core.graphics.withTranslation
 import com.withgoogle.experiments.unplugged.ui.PdfModule
+import com.withgoogle.experiments.unplugged.ui.pdf.PAGE_MARGINS
 
 class ContactlessModule: PdfModule {
     override fun draw(canvas: Canvas, resources: Resources) {

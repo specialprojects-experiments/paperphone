@@ -1,6 +1,7 @@
 package com.withgoogle.experiments.unplugged.ui.calendar
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -33,6 +34,10 @@ class CalendarSelectorActivity: AppCompatActivity() {
         moduleView.isChecked = true
 
         loadCalendars()
+
+        findViewById<View>(R.id.finish).setOnClickListener {
+            finish()
+        }
     }
 
     private val calendarAdapter = CalendarAdapter { calendar, checked ->

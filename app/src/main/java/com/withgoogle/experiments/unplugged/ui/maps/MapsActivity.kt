@@ -25,6 +25,7 @@ import com.google.android.libraries.places.widget.Autocomplete
 import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.widget.AutocompleteActivity
 import android.app.Activity
+import android.view.View
 import com.withgoogle.experiments.unplugged.model.Location
 import com.withgoogle.experiments.unplugged.ui.AppState
 import com.withgoogle.experiments.unplugged.util.bindView
@@ -71,6 +72,10 @@ class MapsActivity: AppCompatActivity() {
             reverseGeocode(destination, destinationView)
         } else {
             destinationView.text = "Tap here to search for a place"
+        }
+
+        findViewById<View>(R.id.finish).setOnClickListener {
+            finish()
         }
     }
 

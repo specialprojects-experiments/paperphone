@@ -28,6 +28,10 @@ class PaperAppList: AppCompatActivity() {
         moduleView.isChecked = true
 
         loadPaperApps()
+
+        findViewById<View>(R.id.finish).setOnClickListener {
+            finish()
+        }
     }
 
     private val paperAppsAdapter = PaperAppsAdapter { resId ->

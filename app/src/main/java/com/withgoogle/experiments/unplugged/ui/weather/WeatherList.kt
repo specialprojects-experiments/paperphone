@@ -5,6 +5,7 @@ import android.location.Address
 import android.location.Geocoder
 import android.location.Location
 import android.os.Bundle
+import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -47,6 +48,10 @@ class WeatherList: AppCompatActivity() {
         }
 
         fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, null)
+
+        findViewById<View>(R.id.finish).setOnClickListener {
+            finish()
+        }
     }
 
     private val locationCallback = object : LocationCallback() {

@@ -14,8 +14,9 @@
 
     <com.withgoogle.experiments.unplugged.ui.widget.BetterViewAnimator
         android:id="@+id/view_animator"
+        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp">
 
         <com.airbnb.lottie.LottieAnimationView
             android:layout_gravity="center"
@@ -32,5 +33,24 @@
             android:layout_height="match_parent" />
 
     </com.withgoogle.experiments.unplugged.ui.widget.BetterViewAnimator>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14.2sp"
+        android:textColor="#000000"
+        android:gravity="center_horizontal"
+        android:text="@string/tasks_info"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="16dp"
+    />
+
+    <Button
+        android:layout_marginBottom="36dp"
+        android:id="@+id/finish"
+        android:text="@string/ok"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

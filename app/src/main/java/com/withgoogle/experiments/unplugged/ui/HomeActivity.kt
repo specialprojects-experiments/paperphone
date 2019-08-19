@@ -27,14 +27,16 @@ import com.withgoogle.experiments.unplugged.model.Account
 import com.withgoogle.experiments.unplugged.model.Location
 import com.withgoogle.experiments.unplugged.ui.calendar.CalendarModule
 import com.withgoogle.experiments.unplugged.ui.calendar.CalendarSelectorActivity
+import com.withgoogle.experiments.unplugged.ui.contactless.ContactlessActivity
 import com.withgoogle.experiments.unplugged.ui.contacts.ContactListActivity
 import com.withgoogle.experiments.unplugged.ui.contacts.ContactsModule
 import com.withgoogle.experiments.unplugged.ui.maps.MapsActivity
 import com.withgoogle.experiments.unplugged.ui.maps.MapsModule
+import com.withgoogle.experiments.unplugged.ui.notes.NotesActivity
 import com.withgoogle.experiments.unplugged.ui.paperapps.PaperAppList
-import com.withgoogle.experiments.unplugged.ui.pdf.ContactlessModule
+import com.withgoogle.experiments.unplugged.ui.contactless.ContactlessModule
 import com.withgoogle.experiments.unplugged.ui.pdf.FrontModule
-import com.withgoogle.experiments.unplugged.ui.pdf.NotesModules
+import com.withgoogle.experiments.unplugged.ui.notes.NotesModules
 import com.withgoogle.experiments.unplugged.ui.paperapps.PaperAppModule
 import com.withgoogle.experiments.unplugged.ui.pdf.PhotoModule
 import com.withgoogle.experiments.unplugged.ui.pdf.PlaceHolderModule
@@ -87,7 +89,9 @@ class HomeActivity : AppCompatActivity() {
             mapsPick()
         }
 
-        setupItem(notesView, R.string.notes)
+        setupItem(notesView, R.string.notes) {
+            startActivity(Intent(this@HomeActivity, NotesActivity::class.java))
+        }
 
         setupItem(tasksView, R.string.item_tasks) {
             tokenForTasks()
@@ -105,7 +109,9 @@ class HomeActivity : AppCompatActivity() {
             paperAppPick()
         }
 
-        setupItem(contactlessView, R.string.item_contactless)
+        setupItem(contactlessView, R.string.item_contactless) {
+            startActivity(Intent(this@HomeActivity, ContactlessActivity::class.java))
+        }
 
         findViewById<TextView>(R.id.selected_account).setOnClickListener {
             pickAccount()
@@ -123,41 +129,17 @@ class HomeActivity : AppCompatActivity() {
         startActivity(Intent(this, PaperAppList::class.java))
     }
 
-    private fun setupItem(moduleView: ModuleView, @StringRes resId: Int, longPressCallback: ((View) -> Unit)? = null) {
+    private fun setupItem(moduleView: ModuleView, @StringRes resId: Int, onPressed: ((View) -> Unit)? = null) {
         with(moduleView) {
             val name = getString(resId)
 
             setText(name[0].toString(), name)
 
-            val phoneApp = PaperPhoneApp.obtain(this@HomeActivity)
-
-            val preference = phoneApp.preferenceMap[moduleView.id]
-
             setOnClickListener {
-                preference?.let {
-                    if (!it.isSet) {
-                        longPressCallback?.let {
-                            longPressCallback.invoke(moduleView)
-                        }
-
-                        it.set(true)
-                    } else {
-                        if(moduleView.isChecked) {
-                            phoneApp.modulesInfoMap[moduleView.id]?.let { res ->
-                                moduleInfoView.text = getString(res)
-                            }
-                        }
-                    }
+                if (isChecked) {
+                    onPressed?.invoke(it)
                 }
             }
-
-            longPressCallback?.let {
-                setOnLongPress(View.OnLongClickListener { view ->
-                    longPressCallback.invoke(view)
-                    true
-                })
-            }
-
         }
     }
 

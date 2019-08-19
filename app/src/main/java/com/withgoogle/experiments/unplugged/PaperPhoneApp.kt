@@ -3,8 +3,6 @@ package com.withgoogle.experiments.unplugged
 import android.app.Application
 import android.content.Context
 import android.preference.PreferenceManager
-import android.util.SparseArray
-import android.util.SparseLongArray
 import com.google.android.libraries.places.api.Places
 import com.withgoogle.experiments.unplugged.data.prefs.BooleanPreference
 import com.withgoogle.experiments.unplugged.data.prefs.StringPreference
@@ -31,10 +29,6 @@ class PaperPhoneApp: Application() {
         R.id.paper_apps to R.string.paper_apps_info
     )
 
-    private val modules = listOf(
-        R.id.maps, R.id.contacts, R.id.calendar, R.id.weather, R.id.tasks, R.id.notes, R.id.photos, R.id.contactless, R.id.paper_apps
-    )
-
     override fun onCreate() {
         super.onCreate()
 
@@ -42,13 +36,14 @@ class PaperPhoneApp: Application() {
 
         val preferenceManager = PreferenceManager.getDefaultSharedPreferences(this)
 
-        modules.forEach {
-            preferenceMap[it] = BooleanPreference(preferenceManager, "$it-interacted")
+        modulesInfoMap.forEach {
+            preferenceMap[it.key] = BooleanPreference(preferenceManager, "$it-interacted")
         }
 
         accountPreference = StringPreference(preferenceManager, "gaccount")
         onboardingPreference = BooleanPreference(preferenceManager, "completedOnboarding")
         namePreference = StringPreference(preferenceManager, "name")
+
         AppState.firstName.value = namePreference.get()
 
         if (accountPreference.isSet) {

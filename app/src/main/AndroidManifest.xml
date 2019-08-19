@@ -85,6 +85,10 @@
             android:screenOrientation="portrait"/>
 
         <activity
+            android:name=".ui.notes.NotesActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
             android:name=".ui.print.FoldingInfoActivity"
             android:taskAffinity=".printing"
             android:screenOrientation="portrait"/>
@@ -92,6 +96,11 @@
         <activity
             android:name=".ui.paperapps.PaperAppList"
             android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".ui.contactless.ContactlessActivity"
+            android:screenOrientation="portrait"/>
+
     </application>
 
 </manifest>

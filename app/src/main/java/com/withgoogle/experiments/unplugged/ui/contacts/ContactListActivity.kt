@@ -16,6 +16,7 @@ import com.withgoogle.experiments.unplugged.data.integrations.contacts.ContactsI
 import com.withgoogle.experiments.unplugged.ui.widget.ModuleView
 import android.graphics.drawable.ColorDrawable
 import android.graphics.Color
+import android.view.View
 import androidx.core.content.res.ResourcesCompat
 import com.withgoogle.experiments.unplugged.util.bindView
 
@@ -45,6 +46,10 @@ class ContactListActivity: AppCompatActivity() {
         }
 
         loadContacts()
+
+        findViewById<View>(R.id.finish).setOnClickListener {
+            finish()
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

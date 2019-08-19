@@ -1,4 +1,4 @@
-package com.withgoogle.experiments.unplugged.ui.pdf
+package com.withgoogle.experiments.unplugged.ui.notes
 
 import android.content.res.Resources
 import android.graphics.Canvas
