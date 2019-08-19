@@ -79,7 +79,7 @@ class ContactListActivity: AppCompatActivity() {
     }
 
     private inner class SwipeToDeleteCallback(val contactListAdapter: ContactListAdapter)
-        : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
+        : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
 
         private val background = ColorDrawable(Color.parseColor("#1d1d1d"))
 
