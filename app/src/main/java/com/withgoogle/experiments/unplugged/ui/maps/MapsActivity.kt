@@ -29,6 +29,9 @@ import com.withgoogle.experiments.unplugged.model.Location
 import com.withgoogle.experiments.unplugged.ui.AppState
 import com.withgoogle.experiments.unplugged.util.bindView
 
+private const val ORIGIN_REQ = 0x3
+private const val DESTINATION_REQ = 0x2
+
 class MapsActivity: AppCompatActivity() {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
@@ -46,10 +49,11 @@ class MapsActivity: AppCompatActivity() {
         }
 
         destinationView.setOnClickListener {
-            val intent = Autocomplete.IntentBuilder(
-                AutocompleteActivityMode.OVERLAY, arrayListOf(Place.Field.LAT_LNG, Place.Field.ADDRESS))
-                .build(this)
-            startActivityForResult(intent, 2)
+            launchPlacesPicker(DESTINATION_REQ)
+        }
+
+        originView.setOnClickListener {
+            launchPlacesPicker(ORIGIN_REQ)
         }
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
@@ -70,6 +74,13 @@ class MapsActivity: AppCompatActivity() {
         }
     }
 
+    private fun launchPlacesPicker(requestCode: Int) {
+        val intent = Autocomplete.IntentBuilder(
+            AutocompleteActivityMode.OVERLAY, arrayListOf(Place.Field.LAT_LNG, Place.Field.ADDRESS))
+            .build(this)
+        startActivityForResult(intent, requestCode)
+    }
+
     private val locationCallback = object : LocationCallback() {
         override fun onLocationResult(locationResult: LocationResult?) {
             locationResult ?: return
@@ -79,27 +90,33 @@ class MapsActivity: AppCompatActivity() {
 
             val location = locationResult.locations[0]
 
-            AppState.origin.value = Location(location.latitude, location.longitude)
+            if (AppState.origin.value == null) {
+                AppState.origin.value = Location(location.latitude, location.longitude)
+            }
 
-            reverseGeocode(Location(location.latitude, location.longitude), originView)
+            AppState.origin.value?.let {
+                reverseGeocode(Location(it.latitude, it.longitude), originView)
+            }
         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == 2) {
-            if (resultCode == Activity.RESULT_OK) {
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == DESTINATION_REQ) {
                 val result = data?.let { Autocomplete.getPlaceFromIntent(it) }
                 result?.let { place ->
                     AppState.destination.value = place.latLng?.let { Location(it.latitude, it.longitude) }
                     destinationView.text = "${place.address}"
                 }
-            } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
-                // TODO: Handle the error.
-                val status = data?.let { Autocomplete.getStatusFromIntent(it) }
-
-            } else if (resultCode == Activity.RESULT_CANCELED) {
-                // The user canceled the operation.
+            } else if(requestCode == ORIGIN_REQ) {
+                val result = data?.let { Autocomplete.getPlaceFromIntent(it) }
+                result?.let { place ->
+                    AppState.origin.value = place.latLng?.let { Location(it.latitude, it.longitude) }
+                    originView.text = "${place.address}"
+                }
             }
+        } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
+            data?.let { Autocomplete.getStatusFromIntent(it) }
         }
     }
 
