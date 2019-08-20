@@ -136,8 +136,7 @@ class MapsModule(val context: Context, val origin: Location, val destination: Lo
         canvas.withSave {
             val hintsPaint = Paint().apply {
                 color = Color.BLACK
-                style = Paint.Style.STROKE
-                strokeWidth = 0.5F
+                style = Paint.Style.FILL_AND_STROKE
             }
 
             val dotsPaint = Paint().apply {
@@ -161,7 +160,7 @@ class MapsModule(val context: Context, val origin: Location, val destination: Lo
         canvas.withSave {
             val letterTextPaint = Paint().apply {
                 textSize = 8.36F
-                color = Color.BLACK
+                color = Color.WHITE
                 typeface = resources.getFont(R.font.varela_regular)
             }
 
