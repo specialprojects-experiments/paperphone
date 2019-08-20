@@ -55,14 +55,16 @@ class CalendarModule(private val events: List<Event>): PdfModule {
         val eventMetrics = timeTextPaint.fontMetrics
         val eventHeight = eventMetrics.descent - eventMetrics.ascent
 
-        for(event: Event in events) {
-            val dateStart = Instant.ofEpochMilli(event.dateStart)
-            val dateEnd = Instant.ofEpochMilli(event.dateEnd)
+        val maxEvents = if (events.size > 6) 6 else events.size
 
-            val subString = eventTextPaint.breakText(event.title, 0, event.title.count(), true, MODULE_WIDTH, null)
+        for(i in 0..maxEvents) {
+            val dateStart = Instant.ofEpochMilli(events[i].dateStart)
+            val dateEnd = Instant.ofEpochMilli(events[i].dateEnd)
+
+            val subString = eventTextPaint.breakText(events[i].title, 0, events[i].title.count(), true, MODULE_WIDTH, null)
 
             canvas.translate(0F, 24F)
-            canvas.drawText(event.title.substring(0, subString), 0F, eventHeight, eventTextPaint)
+            canvas.drawText(events[i].title.substring(0, subString), 0F, eventHeight, eventTextPaint)
 
             canvas.translate(0F, 8F)
             canvas.drawText("${dateStart.toTime()} - ${dateEnd.toTime()}", 0F, timeHeight, timeTextPaint)
