@@ -10,6 +10,7 @@ import com.withgoogle.experiments.unplugged.model.TaskItem
 import com.withgoogle.experiments.unplugged.ui.PdfModule
 import com.withgoogle.experiments.unplugged.ui.pdf.MODULE_WIDTH
 import com.withgoogle.experiments.unplugged.util.isToday
+import kotlin.math.abs
 
 private const val TASKS_MARGIN = 16F
 
@@ -79,19 +80,10 @@ class TasksModule(val tasks: List<TaskItem>): PdfModule {
 
                 translate(0F, 14F)
             }
-        }
 
-        drawPlaceholder(canvas, circlePaint)
-    }
+            val emptyTodos = data?.let { abs(it.size - 9) } ?: 9
 
-    private fun drawPlaceholder(
-        canvas: Canvas,
-        circlePaint: Paint
-    ) {
-        with(canvas) {
-            translate(0F, 162F)
-
-            for (i in 0..2) {
+            for(i in 0..emptyTodos) {
                 drawCircle(2.9F, 8.5F, 2.9F, circlePaint)
 
                 translate(0F, 14F)
