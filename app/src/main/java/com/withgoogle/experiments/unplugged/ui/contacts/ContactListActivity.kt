@@ -18,6 +18,8 @@ import android.graphics.drawable.ColorDrawable
 import android.graphics.Color
 import android.view.View
 import androidx.core.content.res.ResourcesCompat
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.withgoogle.experiments.unplugged.util.bindView
 
 class ContactListActivity: AppCompatActivity() {
@@ -28,6 +30,8 @@ class ContactListActivity: AppCompatActivity() {
 
     private val addView by bindView<Button>(R.id.add)
 
+    private lateinit var contactsViewModel: ContactsViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contact_list)
@@ -37,6 +41,8 @@ class ContactListActivity: AppCompatActivity() {
         moduleView.setText("C", "Contacts")
         moduleView.isChecked = true
 
+        contactsViewModel = ViewModelProviders.of(this).get(ContactsViewModel::class.java)
+
         addView.setOnClickListener {
             val contactPickerIntent = Intent(
                 Intent.ACTION_PICK,
@@ -45,20 +51,22 @@ class ContactListActivity: AppCompatActivity() {
             startActivityForResult(contactPickerIntent, PICK_CONTACT)
         }
 
-        loadContacts()
-
         findViewById<View>(R.id.finish).setOnClickListener {
             finish()
         }
+
+        contactsViewModel.allContacts.observe(this, Observer { contacts ->
+            contacts?.let { contactsAdapter.changeData(it) }
+        })
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == PICK_CONTACT && resultCode == Activity.RESULT_OK) {
             data?.data?.let { it ->
                 val contact = ContactsImporter(this).forUri(it)
-
-                contact?.let { ContactsDataSource.contacts.add(it) }
-                contactsAdapter.changeData(ContactsDataSource.contacts.sortedBy { it.fullName })
+                contact?.let { newContact ->
+                    contactsViewModel.insert(newContact)
+                }
 
                 checkContactsCount()
             }
@@ -75,12 +83,6 @@ class ContactListActivity: AppCompatActivity() {
         recyclerView.adapter = contactsAdapter
         val itemTouchHelper = ItemTouchHelper(SwipeToDeleteCallback(contactsAdapter))
         itemTouchHelper.attachToRecyclerView(recyclerView)
-    }
-
-    private fun loadContacts() {
-        val contacts = ContactsDataSource.contacts
-
-        contactsAdapter.changeData(contacts.sortedBy { it.fullName })
     }
 
     private inner class SwipeToDeleteCallback(val contactListAdapter: ContactListAdapter)
@@ -148,9 +150,7 @@ class ContactListActivity: AppCompatActivity() {
             val position = viewHolder.adapterPosition
 
             val contact = contactListAdapter[position]
-            contactListAdapter.deleteItem(position)
-
-            ContactsDataSource.contacts.removeIf { it.id == contact.id }
+            contactsViewModel.delete(contact.id)
 
             checkContactsCount()
         }

@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.google.api.services.tasks.TasksScopes
 import com.withgoogle.experiments.unplugged.PaperPhoneApp
 import com.withgoogle.experiments.unplugged.R
@@ -24,6 +25,7 @@ import com.withgoogle.experiments.unplugged.data.integrations.contacts.ContactsD
 import com.withgoogle.experiments.unplugged.data.integrations.tasks.TasksDataSource
 import com.withgoogle.experiments.unplugged.data.integrations.weather.WeatherDataSource
 import com.withgoogle.experiments.unplugged.model.Account
+import com.withgoogle.experiments.unplugged.model.Contact
 import com.withgoogle.experiments.unplugged.model.Location
 import com.withgoogle.experiments.unplugged.ui.calendar.CalendarModule
 import com.withgoogle.experiments.unplugged.ui.calendar.CalendarSelectorActivity
@@ -35,6 +37,7 @@ import com.withgoogle.experiments.unplugged.ui.maps.MapsModule
 import com.withgoogle.experiments.unplugged.ui.notes.NotesActivity
 import com.withgoogle.experiments.unplugged.ui.paperapps.PaperAppList
 import com.withgoogle.experiments.unplugged.ui.contactless.ContactlessModule
+import com.withgoogle.experiments.unplugged.ui.contacts.ContactsViewModel
 import com.withgoogle.experiments.unplugged.ui.pdf.FrontModule
 import com.withgoogle.experiments.unplugged.ui.notes.NotesModules
 import com.withgoogle.experiments.unplugged.ui.paperapps.PaperAppModule
@@ -69,13 +72,20 @@ class HomeActivity : AppCompatActivity() {
     private val contactlessView by bindView<ModuleView>(R.id.contactless)
     private val paperAppsView by bindView<ModuleView>(R.id.paper_apps)
 
-    private val moduleInfoView by lazy {
-        findViewById<TextView>(R.id.module_info)
-    }
+    private lateinit var homeViewModel: HomeViewModel
+
+    private val contacts: ArrayList<Contact> = arrayListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        homeViewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
+
+        homeViewModel.allContacts.observe(this, Observer {
+            contacts.clear()
+            contacts.addAll(it)
+        })
 
         setupItem(calendarView, R.string.item_calendar) {
             calendarPick()
@@ -337,7 +347,7 @@ class HomeActivity : AppCompatActivity() {
         AppState.modules.value =
             Triple(
                 listOf(
-                getModuleOrEmpty(contactsView, ContactsModule(ContactsDataSource.contacts.toList())),
+                getModuleOrEmpty(contactsView, ContactsModule(contacts)),
                 getModuleOrEmpty(calendarView, CalendarModule(CalendarDataSource.ordered)),
                 getModuleOrEmpty(tasksView, TasksModule(TasksDataSource.ordered)),
                 getModuleOrEmpty(
