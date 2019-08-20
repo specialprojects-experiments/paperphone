@@ -38,22 +38,6 @@ class PaperAppList: AppCompatActivity() {
         AppState.paperAppRes.value = resId
     }
 
-    private val paperApps = mapOf(
-        R.drawable.conversion_charts to "Conversion Charts",
-        R.drawable.knots to "KNOTS",
-        R.drawable.italian_phrasebook to "ITALIAN PHRASEBOOK",
-        R.drawable.sign_language to "SIGN LANGUAGE",
-        R.drawable.multiplication_table to "MULTIPLICATION TABLE",
-        R.drawable.recipe to "RECIPE",
-        R.drawable.pigeon_origami to "ORIGAMI PIGEON",
-        R.drawable.sudoku to "SUDOKU",
-        R.drawable.maze to "MAZE",
-        R.drawable.word_of_the_day to "WORD OF THE DAY",
-        R.drawable.anagram to "ANAGRAM",
-        R.drawable.riddle to "RIDDLE",
-        R.drawable.typography to "TYPOGRAPHY"
-    )
-
     private fun setupRecyclerView() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = paperAppsAdapter
