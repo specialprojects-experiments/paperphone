@@ -17,7 +17,9 @@ import android.graphics.RectF
 private const val WIDTH_RESIZE = 117.5F
 
 class PhotoModule(private val context: Context, private val uri: Uri): PdfModule {
-    private fun loadBitmap(): Bitmap? {
+    private var photoBitmap: Bitmap? = null
+
+    override suspend fun setupData() {
         val parcelFileDescriptor = context.contentResolver.openFileDescriptor(uri, "r")
 
         parcelFileDescriptor?.use {
@@ -26,14 +28,12 @@ class PhotoModule(private val context: Context, private val uri: Uri): PdfModule
             })
             Timber.d("Width: ${image.width}, Height: ${image.height}")
 
-            return image
+            photoBitmap = image
         }
-
-        return null
     }
 
     override fun draw(canvas: Canvas, resources: Resources) {
-        loadBitmap()?.let {
+        photoBitmap?.let {
             val ma = ColorMatrix().apply {
                 setSaturation(0f)
             }

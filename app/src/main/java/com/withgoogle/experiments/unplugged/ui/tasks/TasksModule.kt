@@ -14,6 +14,12 @@ import com.withgoogle.experiments.unplugged.util.isToday
 private const val TASKS_MARGIN = 16F
 
 class TasksModule(val tasks: List<TaskItem>): PdfModule {
+    private var data: List<TaskItem>? = null
+
+    override suspend fun setupData() {
+        data = tasks
+    }
+
     override fun draw(canvas: Canvas, resources: Resources) {
         val titleTextPaint = Paint().apply {
             textSize = 11.33F
@@ -54,7 +60,7 @@ class TasksModule(val tasks: List<TaskItem>): PdfModule {
             val descriptionMetrics = descriptionTextPaint.fontMetrics
             val descriptionHeight = descriptionMetrics.descent - descriptionMetrics.ascent
 
-            tasks.forEach {
+            data?.forEach {
                 drawCircle(2.9F, 8.5F, 2.9F, circlePaint)
 
                 val subString = descriptionTextPaint.breakText(it.title, 0, it.title.count(), true, MODULE_WIDTH - TASKS_MARGIN, null)

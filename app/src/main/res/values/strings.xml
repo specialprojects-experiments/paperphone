@@ -27,6 +27,7 @@
     <string name="going_to">Going to</string>
     <string name="maps_instructions">Print maps and directions onto\nthe back of your paper phone.</string>
     <string name="global_instructions">Tap to select the things you want\nto print to your Paper Phone</string>
+    <string name="print_from_phone">PRINT FROM PHONE</string>
     <string name="print">PRINT</string>
     <string name="folding">FOLDING</string>
     <string name="folding_instructions">To fold your phone, lay the page map\nside up and fold it in half so the two\n

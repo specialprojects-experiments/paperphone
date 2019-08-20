@@ -11,6 +11,10 @@ import com.withgoogle.experiments.unplugged.util.toExtent
 import java.time.LocalDate
 
 class FrontModule(private val firstName: String): PdfModule {
+    override suspend fun setupData() {
+
+    }
+
     override fun draw(canvas: Canvas, resources: Resources) {
         val titleTextPaint = Paint().apply {
             textSize = 17.78F

@@ -15,8 +15,8 @@ import java.io.File
 import java.time.Instant
 
 const val PAGE_MARGINS = 28F
-private const val PADDING_1 = 58F
-private const val PADDING_2 = 54F
+const val PADDING_1 = 58F
+const val PADDING_2 = 54F
 
 const val MODULE_WIDTH = 154F
 const val MODULE_HEIGHT = 242F

@@ -12,6 +12,10 @@ import com.withgoogle.experiments.unplugged.ui.pdf.MODULE_HEIGHT
 import com.withgoogle.experiments.unplugged.ui.pdf.MODULE_WIDTH
 
 class PaperAppModule(@DrawableRes val resId: Int): PdfModule {
+    override suspend fun setupData() {
+
+    }
+
     override fun draw(canvas: Canvas, resources: Resources) {
         val image = BitmapFactory.decodeResource(resources, resId, BitmapFactory.Options().apply {
             inSampleSize = 1

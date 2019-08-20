@@ -9,6 +9,10 @@ import com.withgoogle.experiments.unplugged.R
 import com.withgoogle.experiments.unplugged.ui.PdfModule
 
 class NotesModules: PdfModule {
+    override suspend fun setupData() {
+
+    }
+
     override fun draw(canvas: Canvas, resources: Resources) {
         val titleTextPaint = Paint().apply {
             textSize = 11.33F

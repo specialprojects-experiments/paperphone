@@ -6,4 +6,6 @@ import android.graphics.Canvas
 interface PdfModule {
     fun draw(canvas: Canvas, resources: Resources)
     val isRotated: Boolean
+
+    suspend fun setupData()
 }

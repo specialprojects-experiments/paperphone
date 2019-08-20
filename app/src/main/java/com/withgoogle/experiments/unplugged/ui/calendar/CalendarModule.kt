@@ -12,6 +12,10 @@ import com.withgoogle.experiments.unplugged.util.toTime
 import java.time.Instant
 
 class CalendarModule(private val events: List<Event>): PdfModule {
+    override suspend fun setupData() {
+
+    }
+
     override fun draw(canvas: Canvas, resources: Resources) {
         val titleTextPaint = Paint().apply {
             textSize = 11.33F

@@ -38,6 +38,9 @@ class PdfActionSelectionActivity: AppCompatActivity() {
         AppState.modules.value?.let { modules ->
             CoroutineScope(Dispatchers.Main).launch {
                 val file = withContext(Dispatchers.IO) {
+                    modules.first.forEach { it.setupData() }
+                    modules.second?.setupData()
+
                     generator.generatePdf(modules.first, modules.second, modules.third)
                 }
                 openFileIntent(file)
@@ -58,4 +61,5 @@ class PdfActionSelectionActivity: AppCompatActivity() {
         val chooser = Intent.createChooser(intent, "")
         startActivity(chooser)
     }
+
 }

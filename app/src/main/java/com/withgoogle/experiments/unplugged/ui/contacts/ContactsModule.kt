@@ -9,6 +9,10 @@ import com.withgoogle.experiments.unplugged.model.Contact
 import com.withgoogle.experiments.unplugged.ui.PdfModule
 
 class ContactsModule(val contacts: List<Contact>): PdfModule {
+    override suspend fun setupData() {
+
+    }
+
     override val isRotated: Boolean
         get() = true
 

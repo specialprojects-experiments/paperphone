@@ -26,6 +26,10 @@ class WeatherModule(
     val date: LocalDate,
     val location: String = WeatherDataSource.location
 ): PdfModule {
+    override suspend fun setupData() {
+
+    }
+
     override fun draw(canvas: Canvas, resources: Resources) {
         drawTitle(canvas, resources)
 

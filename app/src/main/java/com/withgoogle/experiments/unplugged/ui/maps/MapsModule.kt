@@ -30,6 +30,13 @@ private const val CANVAS_PIVOT_X = 787F
 private const val CANVAS_PIVOT_Y = 541F
 
 class MapsModule(val context: Context, val origin: Location, val destination: Location): PdfModule {
+    private var mapBitmap: Bitmap? = null
+
+    override suspend fun setupData() {
+        val mapUrl = GoogleDirections().directionEncodedPath(origin, destination)
+
+        mapUrl?.let { mapBitmap = loadMapAsBitmap(it) }
+    }
 
     override fun draw(canvas: Canvas, resources: Resources) {
         canvas.translate(CANVAS_PIVOT_X, CANVAS_PIVOT_Y)
@@ -39,9 +46,7 @@ class MapsModule(val context: Context, val origin: Location, val destination: Lo
 
         drawTitle(canvas, resources)
 
-        val mapUrl = GoogleDirections().directionEncodedPath(origin, destination)
-
-        mapUrl?.let { drawMap(canvas, it) }
+        drawMap(canvas)
 
         drawDirectionsInfo(canvas, resources)
 
@@ -62,9 +67,9 @@ class MapsModule(val context: Context, val origin: Location, val destination: Lo
         }
     }
 
-    private fun drawMap(canvas: Canvas, mapUrl: String) {
+    private fun drawMap(canvas: Canvas) {
         canvas.withTranslation(294F, 28F) {
-            loadMapAsBitmap(mapUrl)?.let {
+            mapBitmap?.let {
                 Timber.d("Drawing bitmap with size: ${it.width},${it.height}")
                 val ma = ColorMatrix().apply {
                     setSaturation(0f)

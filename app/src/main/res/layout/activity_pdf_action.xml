@@ -9,7 +9,7 @@
         android:id="@+id/print"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/folding_instructions_label" />
+        android:text="@string/print_from_phone" />
 
     <Button
         android:layout_marginTop="8dp"
@@ -17,5 +17,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/create_pdf" />
+
+    <Button
+        android:layout_marginTop="8dp"
+        android:id="@+id/print_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/folding_instructions_label" />
 
 </LinearLayout>

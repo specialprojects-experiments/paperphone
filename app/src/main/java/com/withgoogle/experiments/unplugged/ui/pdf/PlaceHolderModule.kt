@@ -7,6 +7,10 @@ import android.graphics.Paint
 import com.withgoogle.experiments.unplugged.ui.PdfModule
 
 class PlaceHolderModule(private val drawDots: Boolean = true): PdfModule {
+    override suspend fun setupData() {
+
+    }
+
     override fun draw(canvas: Canvas, resources: Resources) {
         val dotsPaint = Paint().apply {
             color = Color.BLACK

@@ -10,6 +10,10 @@ import com.withgoogle.experiments.unplugged.ui.PdfModule
 import com.withgoogle.experiments.unplugged.ui.pdf.PAGE_MARGINS
 
 class ContactlessModule: PdfModule {
+    override suspend fun setupData() {
+
+    }
+
     override fun draw(canvas: Canvas, resources: Resources) {
         val linePaint =  Paint().apply {
             color = Color.GRAY
