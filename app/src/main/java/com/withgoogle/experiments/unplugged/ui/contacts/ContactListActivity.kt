@@ -7,7 +7,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.withgoogle.experiments.unplugged.data.integrations.contacts.ContactsDataSource
 import android.provider.ContactsContract
 import android.widget.Button
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -56,7 +55,11 @@ class ContactListActivity: AppCompatActivity() {
         }
 
         contactsViewModel.allContacts.observe(this, Observer { contacts ->
-            contacts?.let { contactsAdapter.changeData(it) }
+            contacts?.let {
+                contactsAdapter.changeData(it)
+
+                addView.visibility = if (it.size != 7) View.VISIBLE else View.INVISIBLE
+            }
         })
     }
 
@@ -151,14 +154,12 @@ class ContactListActivity: AppCompatActivity() {
 
             val contact = contactListAdapter[position]
             contactsViewModel.delete(contact.id)
-
-            checkContactsCount()
         }
     }
 
     fun checkContactsCount() {
         // Max number of contacts
-        addView.isEnabled = contactsAdapter.itemCount != 7
+        // addView.visibility = if (contactsAdapter.itemCount != 6) View.VISIBLE else View.INVISIBLE
     }
 }
 
