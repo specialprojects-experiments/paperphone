@@ -34,7 +34,7 @@
         in half one last time.
     </string>
     <string name="done">Done</string>
-    <string name="choose_gaccount">Please choose the Google account you wish to use.</string>
+    <string name="choose_gaccount">Please choose the Google\naccount you wish to use.</string>
     <string name="onboarding_folding">This experiment prints a\nlittle paper phone with the\nmost important information\nyou\'ll need for the day.
     </string>
     <string name="onboarding_selecting">Just choose the information\nyou would like to include on\nyour paper phone and\n
