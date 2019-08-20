@@ -41,11 +41,11 @@ class MapsModule(val context: Context, val origin: Location, val destination: Lo
 
         val mapUrl = GoogleDirections().directionEncodedPath(origin, destination)
 
-        mapUrl?.let {
-            drawMap(canvas, it)
-        }
+        mapUrl?.let { drawMap(canvas, it) }
 
         drawDirectionsInfo(canvas, resources)
+
+        drawDots(canvas)
     }
 
     private fun loadMapAsBitmap(url: String): Bitmap? {
@@ -111,8 +111,24 @@ class MapsModule(val context: Context, val origin: Location, val destination: Lo
         }
     }
 
+    private fun drawDots(canvas: Canvas) {
+        val dotsPaint = Paint().apply {
+            color = Color.BLACK
+        }
+
+        with(canvas) {
+            withTranslation(0F, 130F) {
+                for (i in 0..23) {
+                    for (j in 0..16) {
+                        drawCircle(j * 17F, i * 17F, 0.3F, dotsPaint)
+                    }
+                }
+            }
+        }
+    }
+
     private fun drawCircles(canvas: Canvas, resources: Resources) {
-        canvas.withTranslation {
+        canvas.withSave {
             val hintsPaint = Paint().apply {
                 color = Color.BLACK
                 style = Paint.Style.STROKE
