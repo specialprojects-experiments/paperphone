@@ -2,6 +2,7 @@ package com.withgoogle.experiments.unplugged.data.integrations.weather
 
 import com.google.gson.Gson
 import com.withgoogle.experiments.unplugged.BuildConfig
+import com.withgoogle.experiments.unplugged.R
 import com.withgoogle.experiments.unplugged.data.integrations.maps.GoogleHttpClient
 import com.withgoogle.experiments.unplugged.model.ThreeHourForecast
 import com.withgoogle.experiments.unplugged.ui.AppState
@@ -44,7 +45,7 @@ class OpenWeatherService {
                ThreeHourForecast(
                   timestamp = Instant.ofEpochSecond(it.dt),
                   temperature = it.main.temp.toInt(),
-                  icon = it.weather[0].icon,
+                  iconRes = mapIcon(it.weather[0].icon),
                   weather = it.weather[0].main
                )}
          }
@@ -52,7 +53,27 @@ class OpenWeatherService {
          null
       }
    }
+
+   private fun mapIcon(icon: String): Int {
+      iconsMap.forEach { (key, value) ->
+         if(value.contains(icon)) {
+            return key
+         }
+      }
+
+      return -1
+   }
 }
+
+private val iconsMap = mapOf(
+   R.drawable.ic_sunny to setOf("01d", "01n"),
+   R.drawable.ic_sun_cloud to setOf("02d", "02n"),
+   R.drawable.ic_cloudy to setOf("03d", "03n", "04d", "04n"),
+   R.drawable.ic_rain to setOf("09d", "09n", "10d", "10n"),
+   R.drawable.ic_thunder to setOf("11d", "11n"),
+   R.drawable.ic_snow to setOf("13d", "13n"),
+   R.drawable.ic_wind to setOf("50d", "50n")
+)
 
 data class ForecastResult(val list: List<ForecastEntry>)
 

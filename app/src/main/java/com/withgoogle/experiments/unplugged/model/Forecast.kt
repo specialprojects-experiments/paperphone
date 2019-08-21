@@ -6,4 +6,4 @@ data class ThreeHourForecast(
     val timestamp: Instant,
     val temperature: Int,
     val weather: String,
-    val icon: String)
+    val iconRes: Int)

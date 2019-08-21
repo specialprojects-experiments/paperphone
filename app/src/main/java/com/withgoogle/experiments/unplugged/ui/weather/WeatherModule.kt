@@ -96,7 +96,7 @@ class WeatherModule(
                 drawLine(0F, 0F, MODULE_WIDTH, 0F, linePaint)
 
                 withSave {
-                    val drawable = ResourcesCompat.getDrawable(resources, R.drawable.ic_cloudy, null) as VectorDrawable
+                    val drawable = ResourcesCompat.getDrawable(resources, threeHourForecast.iconRes, null) as VectorDrawable
 
                     drawable.let {
                         val bitmap = getBitmap(drawable)
