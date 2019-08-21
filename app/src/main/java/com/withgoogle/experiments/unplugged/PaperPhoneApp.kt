@@ -15,30 +15,12 @@ class PaperPhoneApp: Application() {
     lateinit var onboardingPreference: BooleanPreference
     lateinit var namePreference: StringPreference
 
-    val preferenceMap = mutableMapOf<Int, BooleanPreference>()
-
-    val modulesInfoMap = mapOf(
-        R.id.maps to R.string.maps_info,
-        R.id.contacts to R.string.contacts_info,
-        R.id.calendar to R.string.calendar_info,
-        R.id.weather to R.string.weather_info,
-        R.id.tasks to R.string.tasks_info,
-        R.id.notes to R.string.notes_info,
-        R.id.photos to R.string.photos_info,
-        R.id.contactless to R.string.contactless_info,
-        R.id.paper_apps to R.string.paper_apps_info
-    )
-
     override fun onCreate() {
         super.onCreate()
 
         Places.initialize(this, BuildConfig.PLACES_API_KEY)
 
         val preferenceManager = PreferenceManager.getDefaultSharedPreferences(this)
-
-        modulesInfoMap.forEach {
-            preferenceMap[it.key] = BooleanPreference(preferenceManager, "$it-interacted")
-        }
 
         accountPreference = StringPreference(preferenceManager, "gaccount")
         onboardingPreference = BooleanPreference(preferenceManager, "completedOnboarding")
