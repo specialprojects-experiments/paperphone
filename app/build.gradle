@@ -16,8 +16,8 @@ android {
         applicationId "com.withgoogle.experiments.unplugged"
         minSdkVersion 26
         targetSdkVersion 28
-        versionCode 4
-        versionName "1.0 - internal 4"
+        versionCode 5
+        versionName "1.0 - internal 5"
 
         buildConfigField "String", "GMAPS_API_KEY", "\"" + keys.GMAPS_API_KEY + "\""
         buildConfigField "String", "WEATHER_APP_ID", "\"" + keys.WEATHER_APP_ID + "\""
