@@ -57,7 +57,7 @@ class CalendarModule(private val events: List<Event>): PdfModule {
 
         val maxEvents = if (events.size > 6) 6 else events.size
 
-        for(i in 0..maxEvents) {
+        for(i in 0 until maxEvents) {
             val dateStart = Instant.ofEpochMilli(events[i].dateStart)
             val dateEnd = Instant.ofEpochMilli(events[i].dateEnd)
 
