@@ -2,7 +2,7 @@
     <string name="app_name">Paper Phone</string>
     <string name="notes">Notes</string>
     <string name="maps_info">Printing maps and directions\nrequires a printer which supports\ndouble sided printing.</string>
-    <string name="contacts_info">Choose up to 7 contacts to print\non you Paper Phone</string>
+    <string name="contacts_info">Choose up to 7 contacts to print\non your Paper Phone</string>
     <string name="calendar_info">Choose the calendars you want\nto print to your Paper Phone</string>
     <string name="weather_info">Add a weather report for today</string>
     <string name="tasks_info">Choose the task lists you want\nto print to your Paper Phone</string>
@@ -41,5 +41,5 @@
     <string name="onboarding_selecting">Just choose the information\nyou would like to include on\nyour paper phone and\n
         hit print.
     </string>
-    <string name="onboarding_welcome">Practice spending a little time\naway from your phone.</string>
+    <string name="onboarding_welcome">A printable Paper Phone which\nhelps you take a break away\nfrom your digital world.</string>
 </resources>
