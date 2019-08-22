@@ -20,6 +20,6 @@
         android:id="@+id/animation"
         android:layout_width="262dp"
         android:layout_height="204dp"
-        android:src="@drawable/folding_animation" />
+        android:src="@drawable/ic_folding_animation" />
 
 </LinearLayout>
