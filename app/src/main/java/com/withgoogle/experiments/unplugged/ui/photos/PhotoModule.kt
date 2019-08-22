@@ -1,35 +1,23 @@
-package com.withgoogle.experiments.unplugged.ui.pdf
+package com.withgoogle.experiments.unplugged.ui.photos
 
-import android.content.Context
 import android.content.res.Resources
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.Canvas
+import android.graphics.*
 import android.net.Uri
 import com.withgoogle.experiments.unplugged.ui.PdfModule
 import timber.log.Timber
-import android.graphics.ColorMatrix
-import android.graphics.ColorMatrixColorFilter
-import android.graphics.Paint
-import android.graphics.Rect
-import android.graphics.RectF
 
 private const val WIDTH_RESIZE = 117.5F
 
-class PhotoModule(private val context: Context, private val uri: Uri): PdfModule {
+class PhotoModule(private val uri: Uri): PdfModule {
     private var photoBitmap: Bitmap? = null
 
     override suspend fun setupData() {
-        val parcelFileDescriptor = context.contentResolver.openFileDescriptor(uri, "r")
+        val image = BitmapFactory.decodeFile(uri.toString(), BitmapFactory.Options().apply {
+            inSampleSize = 1
+        })
+        Timber.d("Width: ${image.width}, Height: ${image.height}")
 
-        parcelFileDescriptor?.use {
-            val image = BitmapFactory.decodeFileDescriptor(it.fileDescriptor, null, BitmapFactory.Options().apply {
-                inSampleSize = 1
-            })
-            Timber.d("Width: ${image.width}, Height: ${image.height}")
-
-            photoBitmap = image
-        }
+        photoBitmap = image
     }
 
     override fun draw(canvas: Canvas, resources: Resources) {

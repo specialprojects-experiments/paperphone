@@ -101,6 +101,10 @@
             android:name=".ui.contactless.ContactlessActivity"
             android:screenOrientation="portrait"/>
 
+        <activity
+            android:name=".ui.photos.PhotosActivity"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

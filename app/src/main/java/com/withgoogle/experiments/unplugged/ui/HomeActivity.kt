@@ -21,7 +21,6 @@ import com.google.api.services.tasks.TasksScopes
 import com.withgoogle.experiments.unplugged.PaperPhoneApp
 import com.withgoogle.experiments.unplugged.R
 import com.withgoogle.experiments.unplugged.data.integrations.calendar.CalendarDataSource
-import com.withgoogle.experiments.unplugged.data.integrations.contacts.ContactsDataSource
 import com.withgoogle.experiments.unplugged.data.integrations.tasks.TasksDataSource
 import com.withgoogle.experiments.unplugged.data.integrations.weather.WeatherDataSource
 import com.withgoogle.experiments.unplugged.model.Account
@@ -37,12 +36,12 @@ import com.withgoogle.experiments.unplugged.ui.maps.MapsModule
 import com.withgoogle.experiments.unplugged.ui.notes.NotesActivity
 import com.withgoogle.experiments.unplugged.ui.paperapps.PaperAppList
 import com.withgoogle.experiments.unplugged.ui.contactless.ContactlessModule
-import com.withgoogle.experiments.unplugged.ui.contacts.ContactsViewModel
 import com.withgoogle.experiments.unplugged.ui.pdf.FrontModule
 import com.withgoogle.experiments.unplugged.ui.notes.NotesModules
 import com.withgoogle.experiments.unplugged.ui.paperapps.PaperAppModule
-import com.withgoogle.experiments.unplugged.ui.pdf.PhotoModule
+import com.withgoogle.experiments.unplugged.ui.photos.PhotoModule
 import com.withgoogle.experiments.unplugged.ui.pdf.PlaceHolderModule
+import com.withgoogle.experiments.unplugged.ui.photos.PhotosActivity
 import com.withgoogle.experiments.unplugged.ui.print.PdfActionSelectionActivity
 import com.withgoogle.experiments.unplugged.ui.tasks.TaskListActivity
 import com.withgoogle.experiments.unplugged.ui.tasks.TasksModule
@@ -60,7 +59,6 @@ class HomeActivity : AppCompatActivity() {
     private val PERMISSION_READ_EXTERNAL_STORAGE_REQUEST = 0x5
     private val PERMISSION_LOCATION_REQUEST = 0x6
     private val PERMISSION_LOCATION_REQUEST_WEATHER = 0x7
-    private val PICK_IMAGE_REQUEST = 0x8
 
     private val calendarView by bindView<ModuleView>(R.id.calendar)
     private val contactsView by bindView<ModuleView>(R.id.contacts)
@@ -179,12 +177,7 @@ class HomeActivity : AppCompatActivity() {
 
     private fun pickPhoto() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-            val intent = Intent(
-                Intent.ACTION_PICK,
-                MediaStore.Images.Media.INTERNAL_CONTENT_URI
-            )
-            intent.type = "image/*"
-            startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST)
+            startActivity(Intent(this, PhotosActivity::class.java))
         } else {
             ActivityCompat.requestPermissions(
                 this,
@@ -245,12 +238,7 @@ class HomeActivity : AppCompatActivity() {
             }
             PERMISSION_READ_EXTERNAL_STORAGE_REQUEST -> {
                 if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-                    val intent = Intent(
-                        Intent.ACTION_PICK,
-                        MediaStore.Images.Media.INTERNAL_CONTENT_URI
-                    )
-                    intent.type = "image/*"
-                    startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST)
+                    startActivity(Intent(this, PhotosActivity::class.java))
                 }
                 return
             }
@@ -333,11 +321,6 @@ class HomeActivity : AppCompatActivity() {
                 AppState.account.value = Account(accountName, accountType)
                 PaperPhoneApp.obtain(this).accountPreference.set("$accountName|$accountType")
             }
-        } else if(requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK) {
-            data?.let {
-                Timber.d(it.dataString)
-                AppState.photoUri.value = it.data
-            }
         } else {
             super.onActivityResult(requestCode, resultCode, data)
         }
@@ -352,7 +335,9 @@ class HomeActivity : AppCompatActivity() {
                 getModuleOrEmpty(tasksView, TasksModule(TasksDataSource.ordered)),
                 getModuleOrEmpty(
                     photosView,
-                    AppState.photoUri.value?.let { PhotoModule(this@HomeActivity, it) } ?: PlaceHolderModule()),
+                    AppState.photoUri.value?.let {
+                        PhotoModule(it)
+                    } ?: PlaceHolderModule()),
                 getModuleOrEmpty(notesView, NotesModules()),
                 FrontModule(AppState.firstName.value?.let { it } ?: ""),
                 getModuleOrEmpty(
