@@ -13,7 +13,7 @@ class PhotoModule(private val uri: Uri): PdfModule {
 
     override suspend fun setupData() {
         val image = BitmapFactory.decodeFile(uri.toString(), BitmapFactory.Options().apply {
-            inSampleSize = 1
+            inSampleSize = 2
         })
         Timber.d("Width: ${image.width}, Height: ${image.height}")
 
