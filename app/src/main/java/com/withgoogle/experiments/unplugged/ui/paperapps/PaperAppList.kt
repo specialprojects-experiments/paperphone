@@ -21,7 +21,7 @@ class PaperAppList: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_calendar_selector)
+        setContentView(R.layout.activity_paper_apps)
 
         setupRecyclerView()
         moduleView.setText("P", "Paper Apps")
