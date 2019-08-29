@@ -33,30 +33,26 @@ class ContactsImporter(val context: Context) {
     }
 
     fun forUri(uri: Uri): Contact? {
-        val cursor = context.contentResolver.query(uri, null, null, null, null)
+        val cursor = context.contentResolver.query(uri, CONTACTS_PROJECTION, null, null, null)
 
         cursor?.use {
-            it.moveToFirst()
-
-            val idIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone._ID)
-            val phoneIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NORMALIZED_NUMBER)
-            val nameIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME)
-
-            val index = cursor.getLong(idIndex)
-            val name = cursor.getString(nameIndex)
-            val phoneNo = cursor.getString(phoneIndex)
-
-            return Contact(index, name, phoneNo)
+            if (it.moveToFirst()) {
+                return cursorToContact(it)
+            }
         }
 
         return null
     }
 
     private fun cursorToContact(cursor: Cursor): Contact {
+        val idIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone._ID)
+        val phoneIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NORMALIZED_NUMBER)
+        val nameIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME)
+
         return Contact(
-            id = cursor.getLong(0),
-            fullName = cursor.getString(1),
-            phoneNumber = cursor.getString(2)
+            id = cursor.getLong(idIndex),
+            fullName = cursor.getString(nameIndex),
+            phoneNumber = cursor.getString(phoneIndex)
         )
     }
 }
