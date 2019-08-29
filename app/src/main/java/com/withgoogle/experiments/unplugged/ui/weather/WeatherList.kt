@@ -1,9 +1,10 @@
 package com.withgoogle.experiments.unplugged.ui.weather
 
 import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Intent
 import android.location.Address
 import android.location.Geocoder
-import android.location.Location
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
@@ -13,6 +14,9 @@ import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
+import com.google.android.libraries.places.api.model.Place
+import com.google.android.libraries.places.widget.Autocomplete
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import com.withgoogle.experiments.unplugged.R
 import com.withgoogle.experiments.unplugged.data.integrations.weather.OpenWeatherService
 import com.withgoogle.experiments.unplugged.data.integrations.weather.WeatherDataSource
@@ -24,6 +28,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import timber.log.Timber
 import java.io.IOException
+
+private const val PLACE_REQUEST_CODE = 0x2
 
 @SuppressLint("MissingPermission")
 class WeatherList: AppCompatActivity() {
@@ -52,6 +58,10 @@ class WeatherList: AppCompatActivity() {
         findViewById<View>(R.id.finish).setOnClickListener {
             finish()
         }
+
+        currentLocationView.setOnClickListener {
+            launchPlacesPicker()
+        }
     }
 
     private val locationCallback = object : LocationCallback() {
@@ -61,18 +71,38 @@ class WeatherList: AppCompatActivity() {
                 Timber.d(location.toString())
             }
 
-            reverseGeocode(locationResult.locations[0])
+            reverseGeocode(locationResult.locations[0].latitude, locationResult.locations[0].longitude)
         }
     }
 
-    private fun reverseGeocode(location: Location) {
+    private fun launchPlacesPicker() {
+        val intent = Autocomplete.IntentBuilder(
+            AutocompleteActivityMode.OVERLAY, arrayListOf(Place.Field.LAT_LNG, Place.Field.ADDRESS))
+            .build(this)
+        startActivityForResult(intent, PLACE_REQUEST_CODE)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == PLACE_REQUEST_CODE) {
+                val result = data?.let { Autocomplete.getPlaceFromIntent(it) }
+                result?.latLng?.let { location ->
+                    reverseGeocode(location.latitude, location.longitude)
+                }
+            }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data)
+        }
+    }
+
+    private fun reverseGeocode(latitude: Double, longitude: Double) {
         CoroutineScope(Dispatchers.Main).launch {
             val forecasts = withContext(Dispatchers.IO) {
                 val geocoder = Geocoder(this@WeatherList)
 
                 var addresses: List<Address> = emptyList()
                 try {
-                    addresses = geocoder.getFromLocation(location.latitude, location.longitude, 1)
+                    addresses = geocoder.getFromLocation(latitude, longitude, 1)
                 } catch (ioException: IOException) {
                     Timber.e(ioException, "Service unavailable")
                 } catch (illegalArgumentException: IllegalArgumentException) {
