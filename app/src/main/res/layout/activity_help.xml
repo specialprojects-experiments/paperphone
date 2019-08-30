@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:paddingStart="42dp"
+        android:paddingEnd="42dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_marginTop="36dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="17sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/varela_regular"
+            android:letterSpacing="0.12"
+            android:gravity="center_horizontal"
+            android:text="HOW TO MAKE USE\nOF THE PAPER PHONE APP"
+            />
+
+        <TextView
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:gravity="center_horizontal"
+            android:text="Thanks for downloading Paper Phone, an open source and experimental app that we’ve designed to explore ways of having a digital detox. We’ve put together some quick instructions to get you started."
+            />
+
+        <TextView
+            android:layout_marginTop="72dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="17sp"
+            android:textColor="#000000"
+            android:fontFamily="@font/varela_regular"
+            android:letterSpacing="0.12"
+            android:gravity="center_horizontal"
+            android:text="SETTING UP"
+            />
+
+        <TextView
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#000000"
+            android:gravity="center_horizontal"
+            android:text="When you first use the app you will be asked to enter your name. This will be printed on the cover of your Paper Phone and you can change this at any time.\n\nThen you will be asked to choose a Google account to use, currently we only support Google accounts."
+            />
+
+        <TextView
+            android:layout_marginTop="72dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="17sp"
+            android:textColor="#000000"
+            android:fontFamily="@font/varela_regular"
+            android:letterSpacing="0.12"
+            android:gravity="center_horizontal"
+            android:text="CHOOSING THE THINGS \nYOU WANT TO ADD TO YOUR \nPAPER PHONE"
+            />
+
+        <TextView
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#000000"
+            android:gravity="center_horizontal"
+            android:text="You can choose the items which will be printed to your Paper Phone by tapping them. You can also deselect them by tapping on them again.\n
+    \nMAPS
+    \nPrints a map with directions to walk between two chosen points with some space to write notes on the side.
+    \n
+    \nCONTACTS
+    \nLets you choose up to 7 contacts to include on your paper phone in case you need them. You can delete them by swiping to the left. The contacts are remembered in the app to save you time each day you use it.\n
+    \nCALENDAR
+    \nLets you choose one or more calendars to include on your Paper Phone. There is a limit to how many entries we can print on the page, so if you have a lot of appointments some of the text may be truncated or not included - so please check in case you miss an important meeting :)\n
+    \nWEATHER
+    \nPrints a daily weather report for your current, or chosen location.\n
+    \nTASKS
+    \nPrints your Google Tasks list. There is a limit to how many tasks we can print on the page so if you have many, some of the text may be truncated or not included - so please check in case you miss something important.\n
+    \nNOTES
+    \nAdds an empty space to your Paper Phone to capture thoughts and ideas.\n
+    \nPHOTOS
+    \nLets you choose an image to print to your Paper Phone, for example an
+    e-ticket or a photo.\n
+    \nCONTACTLESS
+    \nPrints 4 diagonal cut marks for you store a contactless card. Use scalpel to carefully cut these lines and insert your card.\n
+    \nPAPER APPS
+    \nLets you choose from a series of practical and playful “Apps” such as riddles, sign language and recipes to print to your Paper Phone to bring delight to your day." />
+
+        <TextView
+            android:layout_marginTop="72dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="17sp"
+            android:textColor="#000000"
+            android:fontFamily="@font/varela_regular"
+            android:letterSpacing="0.12"
+            android:gravity="center_horizontal"
+            android:text="PRINTING"
+            />
+
+        <TextView
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#000000"
+            android:gravity="center_horizontal"
+            android:text="Once you select print you can either print to a nearby wifi enabled printer, or you can email yourself a pdf to print in a different way.
+\n\nIf you have chosen to include the map in your print out  you will need to use a printer which supports 2-sided, or duplex printing. If you don’t need the map then printing on one side will work just fine.
+\n\nCurrently the app only supports A4 printing but we have seen good results with Letter sized paper. Each printer will have different settings but we recommend printing scaled to fill the page if your printer allows it."
+            />
+
+        <TextView
+            android:layout_marginTop="72dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="17sp"
+            android:fontFamily="@font/varela_regular"
+            android:textColor="#000000"
+            android:letterSpacing="0.12"
+            android:gravity="center_horizontal"
+            android:text="FOLDING"
+            />
+
+        <TextView
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#000000"
+            android:gravity="center_horizontal"
+            android:text="Follow the folding instructions to fold your Paper Phone."
+            />
+
+        <TextView
+            android:layout_marginTop="72dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="17sp"
+            android:textColor="#000000"
+            android:fontFamily="@font/varela_regular"
+            android:letterSpacing="0.12"
+            android:gravity="center_horizontal"
+            android:text="TIPS"
+            />
+
+        <TextView
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#000000"
+            android:gravity="center_horizontal"
+            android:text="If you want to change your name at any time, just tap on it and write a new one.
+\n\nIf you want to change the linked Google account, just tap on the email address you see at the bottom of the main menu screen to change it.
+\n\nIf at any time you want to reset permissions, hold your finger on top of the app icon on the home screen and select “App info”. Then select “Storage” . Then select “Clear Storage”. This will delete all data stored by the app."
+            />
+
+        <TextView
+            android:layout_marginTop="72dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="17sp"
+            android:fontFamily="@font/varela_regular"
+            android:textColor="#000000"
+            android:letterSpacing="0.12"
+            android:gravity="center_horizontal"
+            android:text="PERMISSIONS"
+            />
+
+        <TextView
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#000000"
+            android:gravity="center_horizontal"
+            android:text="To add some items to your Paper Phone such as Calendars and Maps you will need to allow the app to access things like Location and Calendar data. You don’t have to do this, and it is only necessary if you want to include that specific piece of information on to your Paper Phone. We don’t store this information and it is only used to create your paper phone when you choose to use the app.
+\n\nCURRENTLY WE ASK FOR:
+\nLocation to determine your location when printing directions and also for including a weather report
+\n\nContacts to include selected contacts on your Paper Phone
+\n\nCalendar to include meetings and appointments from a Calendar
+\n\nPhotos, media and files to include a photo or screenshot."
+            />
+
+        <TextView
+            android:layout_marginTop="72dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="17sp"
+            android:fontFamily="@font/varela_regular"
+            android:textColor="#000000"
+            android:letterSpacing="0.12"
+            android:gravity="center_horizontal"
+            android:text="THANKS"
+            />
+
+        <TextView
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#000000"
+            android:gravity="center_horizontal"
+            android:text="Thanks for taking the time to play with our little experiment, and we’d love to hear from you if the Paper Phone has helped you find a better balance with technology."
+            />
+
+        <Button
+            android:layout_marginTop="72dp"
+            android:layout_marginBottom="36dp"
+            android:id="@+id/ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ok" />
+
+    </LinearLayout>
+</ScrollView>

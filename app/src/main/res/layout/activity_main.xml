@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:paddingTop="24dp"
     android:layout_width="match_parent"
@@ -8,23 +9,44 @@
     android:orientation="vertical"
     tools:context=".ui.HomeActivity">
 
-    <TextView
-        style="@style/Title"
-        android:id="@+id/person_name"
-        tools:text="Gonçalo's phone"
-        android:textAllCaps="true"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:layout_marginTop="2dp"
-        style="@style/Subtitle"
-        tools:text="Monday 22nd, July"
-        android:id="@+id/selected_date"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/person_name"
+            style="@style/Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textAllCaps="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Gonçalo's phone" />
+
+        <TextView
+            android:id="@+id/selected_date"
+            style="@style/Subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/person_name"
+            tools:text="Monday 22nd, July" />
+
+        <ImageView
+            android:id="@+id/help"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="24dp"
+            android:src="@drawable/ic_help_outline_black_24dp"
+            app:layout_constraintBottom_toTopOf="@+id/selected_date"
+            app:layout_constraintStart_toEndOf="@+id/person_name"
+            app:layout_constraintTop_toTopOf="@+id/person_name" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:paddingTop="80dp"
