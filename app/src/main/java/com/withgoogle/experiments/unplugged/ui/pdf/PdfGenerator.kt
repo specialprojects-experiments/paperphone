@@ -9,10 +9,14 @@ import android.os.Environment
 import android.print.PrintAttributes
 import android.print.pdf.PrintedPdfDocument
 import androidx.core.graphics.withSave
+import com.withgoogle.experiments.unplugged.R
+import com.withgoogle.experiments.unplugged.ui.AppState
 import com.withgoogle.experiments.unplugged.ui.PdfModule
+import com.withgoogle.experiments.unplugged.util.toExtent
 import timber.log.Timber
 import java.io.File
 import java.time.Instant
+import java.time.LocalDate
 
 const val PAGE_MARGINS = 28F
 const val PADDING_1 = 58F
@@ -86,7 +90,9 @@ class PdfGenerator(private val context: Context, private val drawBorders: Boolea
             }
         }
 
-        val fileDestination = File(filesDir, "paper-${Instant.now().toString()}.pdf")
+        val filename = context.getString(R.string.filename, AppState.firstName.value, LocalDate.now().toExtent())
+
+        val fileDestination = File(filesDir, "$filename.pdf")
 
         document.writeTo(fileDestination.outputStream())
         document.close()

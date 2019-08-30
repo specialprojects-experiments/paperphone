@@ -58,4 +58,6 @@
         In order to include screenshots and photos on your Paper Phone you will need to allow this app to access the pictures on your device.
     </string>
     <string name="rationale_area">%s\n\nYou can do this in the settings.\n\nWould you like to do this now?</string>
+
+    <string name="filename">%1$s\'s Paper Phone - %2$s</string>
 </resources>
