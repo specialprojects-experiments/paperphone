@@ -34,5 +34,9 @@ class PermissionActivity: AppCompatActivity() {
                 data = Uri.fromParts("package", packageName, null)
             })
         }
+
+        findViewById<Button>(R.id.no).setOnClickListener {
+            finish()
+        }
     }
 }
