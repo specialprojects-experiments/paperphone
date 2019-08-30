@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.print.*
+import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
@@ -17,6 +18,7 @@ import java.io.File
 class PdfActionSelectionActivity: AppCompatActivity() {
     private val savePdf by bindView<Button>(R.id.save_pdf)
     private val printPdf by bindView<Button>(R.id.print)
+    private val loadingAnimation by bindView<View>(R.id.loading_animation)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +31,7 @@ class PdfActionSelectionActivity: AppCompatActivity() {
 
         findViewById<Button>(R.id.save_pdf).setOnClickListener {
             it.isEnabled = false
+            loadingAnimation.visibility = View.VISIBLE
             savePdf()
         }
 
@@ -77,6 +80,7 @@ class PdfActionSelectionActivity: AppCompatActivity() {
                 }
                 openFileIntent(file)
                 savePdf.isEnabled = true
+                loadingAnimation.visibility = View.GONE
             }
         }
     }
