@@ -39,8 +39,8 @@ class GoogleDirections {
                 staticMapUrl.newBuilder()
                     .addEncodedQueryParameter("size", "494x494")
                     .addEncodedQueryParameter("path", "weight:2|color:black|enc:$encodedPolyline")
-                    .addEncodedQueryParameter("markers", "icon:https://media.designersfriend.co.uk/sps/media/uploads/work/media/aaa-58511.png|$origin")
-                    .addEncodedQueryParameter("markers", "icon:https://media.designersfriend.co.uk/sps/media/uploads/work/media/bbb-85125.png|$destination")
+                    .addEncodedQueryParameter("markers", "icon:https://media.designersfriend.co.uk/sps/media/uploads/work/media/a-extra-small-38891.png|$origin")
+                    .addEncodedQueryParameter("markers", "icon:https://media.designersfriend.co.uk/sps/media/uploads/work/media/b-extra-small-38903.png|$destination")
                     .addQueryParameter("key", BuildConfig.GMAPS_API_KEY)
                     .build().toString()
             }
