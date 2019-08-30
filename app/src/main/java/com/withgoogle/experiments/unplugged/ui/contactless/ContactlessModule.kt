@@ -17,8 +17,8 @@ class ContactlessModule: PdfModule {
     override fun draw(canvas: Canvas, resources: Resources) {
         val linePaint =  Paint().apply {
             color = Color.GRAY
-            strokeWidth = 1F
-            pathEffect = DashPathEffect( floatArrayOf(40F, 8F), 0F)
+            strokeWidth = 0.5F
+            pathEffect = DashPathEffect( floatArrayOf(3F, 2.6F), 0F)
         }
 
         canvas.withTranslation(-PAGE_MARGINS, -PAGE_MARGINS) {
