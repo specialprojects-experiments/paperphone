@@ -106,7 +106,7 @@ class HomeActivity : AppCompatActivity() {
             tokenForTasks()
         }
 
-        setupItem(photosView, R.string.photos) {
+        setupItem(photosView, R.string.item_photos) {
             pickPhoto()
         }
 
@@ -160,11 +160,19 @@ class HomeActivity : AppCompatActivity() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             startActivity(Intent(this, WeatherList::class.java))
         } else {
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION),
-                PERMISSION_LOCATION_REQUEST_WEATHER
-            )
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.ACCESS_FINE_LOCATION)) {
+                requestPermissionRationale(R.string.item_weather, R.string.location_permission_rationale)
+            } else {
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(
+                        Manifest.permission.ACCESS_FINE_LOCATION,
+                        Manifest.permission.ACCESS_COARSE_LOCATION
+                    ),
+                    PERMISSION_LOCATION_REQUEST_WEATHER
+                )
+            }
         }
     }
 
@@ -172,11 +180,16 @@ class HomeActivity : AppCompatActivity() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             startActivity(Intent(this, MapsActivity::class.java))
         } else {
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION),
-                PERMISSION_LOCATION_REQUEST
-            )
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.ACCESS_FINE_LOCATION)) {
+                requestPermissionRationale(R.string.item_maps, R.string.location_permission_rationale)
+            } else {
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION),
+                    PERMISSION_LOCATION_REQUEST
+                )
+            }
         }
     }
 
@@ -184,12 +197,24 @@ class HomeActivity : AppCompatActivity() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
             startActivity(Intent(this, PhotosActivity::class.java))
         } else {
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
-                PERMISSION_READ_EXTERNAL_STORAGE_REQUEST
-            )
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                requestPermissionRationale(R.string.item_photos, R.string.storage_permission_rationale)
+            } else {
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                    PERMISSION_READ_EXTERNAL_STORAGE_REQUEST
+                )
+            }
         }
+    }
+
+    private fun requestPermissionRationale(title: Int, rationaleRes: Int) {
+        startActivity(Intent(this, PermissionActivity::class.java).apply {
+            putExtra("title_res", title)
+            putExtra("rationale_res", rationaleRes)
+        })
     }
 
     private fun contactsPick() {
@@ -198,7 +223,7 @@ class HomeActivity : AppCompatActivity() {
 
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                     Manifest.permission.READ_CONTACTS)) {
-
+                requestPermissionRationale(R.string.item_contacts, R.string.contacts_permission_rationale)
             } else {
                 ActivityCompat.requestPermissions(this,
                     arrayOf(Manifest.permission.READ_CONTACTS),
@@ -215,7 +240,7 @@ class HomeActivity : AppCompatActivity() {
 
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                     Manifest.permission.READ_CALENDAR)) {
-
+                requestPermissionRationale(R.string.item_calendar, R.string.calendar_permission_rationale)
             } else {
                 ActivityCompat.requestPermissions(this,
                     arrayOf(Manifest.permission.READ_CALENDAR),

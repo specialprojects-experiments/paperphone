@@ -107,6 +107,7 @@
 
         <activity android:name=".ui.HelpActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".ui.PermissionActivity" />
 
     </application>
 

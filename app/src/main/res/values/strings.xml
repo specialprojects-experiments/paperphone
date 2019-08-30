@@ -14,7 +14,7 @@
     <string name="item_contacts">Contacts</string>
     <string name="item_maps">Maps</string>
     <string name="item_tasks">Tasks</string>
-    <string name="photos">Photos</string>
+    <string name="item_photos">Photos</string>
     <string name="item_weather">Weather</string>
     <string name="item_contactless">Contactless</string>
     <string name="item_paperapps">Paper Apps</string>
@@ -22,7 +22,9 @@
     <string name="folding_instructions_label">Folding Instructions</string>
     <string name="next">Next</string>
     <string name="your_name">YOUR NAME</string>
-    <string name="ok">Ok</string>
+    <string name="ok">OK</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
     <string name="current_location">Current Location</string>
     <string name="going_to">Going to</string>
     <string name="maps_instructions">Print maps and directions onto\nthe back of your Paper Phone</string>
@@ -43,4 +45,17 @@
         hit print
     </string>
     <string name="onboarding_welcome">A printable Paper Phone which\nhelps you take a break away\nfrom your digital world</string>
+    <string name="calendar_permission_rationale">
+        If you would like to include calendar entries on your Paper Phone you will need to allow this app to access your calendar.
+    </string>
+    <string name="contacts_permission_rationale">
+        If you would like to include contacts entries on your Paper Phone you will need to allow this app to access your contacts.
+    </string>
+    <string name="location_permission_rationale">
+        In order to include directions on your Paper Phone you will need to allow this app to access your location.
+    </string>
+    <string name="storage_permission_rationale">
+        In order to include screenshots and photos on your Paper Phone you will need to allow this app to access the pictures on your device.
+    </string>
+    <string name="rationale_area">%s\n\nYou can do this in the settings.\n\nWould you like to do this now?</string>
 </resources>
