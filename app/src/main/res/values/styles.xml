@@ -14,7 +14,6 @@
 
     <style name="Theme.PaperPhone.Immersive" parent="Theme.PaperPhone">
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-        <item name="android:windowLightNavigationBar">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
