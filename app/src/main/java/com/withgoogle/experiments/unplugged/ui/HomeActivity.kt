@@ -1,14 +1,17 @@
 package com.withgoogle.experiments.unplugged.ui
 
 import android.Manifest
+import android.R.attr.button
 import android.accounts.AccountManager
 import android.accounts.AccountManagerCallback
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Rect
 import android.os.Bundle
-import android.provider.MediaStore
+import android.view.TouchDelegate
 import android.view.View
+import android.view.ViewParent
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -30,18 +33,18 @@ import com.withgoogle.experiments.unplugged.model.Location
 import com.withgoogle.experiments.unplugged.ui.calendar.CalendarModule
 import com.withgoogle.experiments.unplugged.ui.calendar.CalendarSelectorActivity
 import com.withgoogle.experiments.unplugged.ui.contactless.ContactlessActivity
+import com.withgoogle.experiments.unplugged.ui.contactless.ContactlessModule
 import com.withgoogle.experiments.unplugged.ui.contacts.ContactListActivity
 import com.withgoogle.experiments.unplugged.ui.contacts.ContactsModule
 import com.withgoogle.experiments.unplugged.ui.maps.MapsActivity
 import com.withgoogle.experiments.unplugged.ui.maps.MapsModule
 import com.withgoogle.experiments.unplugged.ui.notes.NotesActivity
-import com.withgoogle.experiments.unplugged.ui.paperapps.PaperAppList
-import com.withgoogle.experiments.unplugged.ui.contactless.ContactlessModule
-import com.withgoogle.experiments.unplugged.ui.pdf.FrontModule
 import com.withgoogle.experiments.unplugged.ui.notes.NotesModules
+import com.withgoogle.experiments.unplugged.ui.paperapps.PaperAppList
 import com.withgoogle.experiments.unplugged.ui.paperapps.PaperAppModule
-import com.withgoogle.experiments.unplugged.ui.photos.PhotoModule
+import com.withgoogle.experiments.unplugged.ui.pdf.FrontModule
 import com.withgoogle.experiments.unplugged.ui.pdf.PlaceHolderModule
+import com.withgoogle.experiments.unplugged.ui.photos.PhotoModule
 import com.withgoogle.experiments.unplugged.ui.photos.PhotosActivity
 import com.withgoogle.experiments.unplugged.ui.print.PdfActionSelectionActivity
 import com.withgoogle.experiments.unplugged.ui.tasks.TaskListActivity
@@ -52,6 +55,7 @@ import com.withgoogle.experiments.unplugged.ui.widget.ModuleView
 import com.withgoogle.experiments.unplugged.util.bindView
 import com.withgoogle.experiments.unplugged.util.weatherFormat
 import timber.log.Timber
+
 
 class HomeActivity : AppCompatActivity() {
     private val ACCOUNT_REQUEST = 0x2
@@ -130,13 +134,27 @@ class HomeActivity : AppCompatActivity() {
             pdfAction()
         }
 
-        findViewById<ImageView>(R.id.help).setOnClickListener {
-            startActivity(Intent(this, HelpActivity::class.java))
+        with(findViewById<ImageView>(R.id.help)) {
+            (parent as View).post {
+                val rect = Rect()
+                getHitRect(rect)
+                rect.top -= 100
+                rect.left -= 100
+                rect.bottom += 100
+                rect.right += 100
+                (parent as View).touchDelegate = TouchDelegate(rect, this)
+            }
+
+            setOnClickListener {
+                startActivity(Intent(this@HomeActivity, HelpActivity::class.java))
+            }
         }
 
         setupHandlers()
         setupStateObservers()
     }
+
+
 
     private fun paperAppPick() {
         startActivity(Intent(this, PaperAppList::class.java))
