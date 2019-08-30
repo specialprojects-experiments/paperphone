@@ -3,6 +3,8 @@ package com.withgoogle.experiments.unplugged.ui.photos
 import android.content.res.Resources
 import android.graphics.*
 import android.net.Uri
+import androidx.core.graphics.withRotation
+import androidx.core.graphics.withTranslation
 import com.withgoogle.experiments.unplugged.ui.PdfModule
 import timber.log.Timber
 
@@ -22,23 +24,47 @@ class PhotoModule(private val uri: Uri): PdfModule {
 
     override fun draw(canvas: Canvas, resources: Resources) {
         photoBitmap?.let {
-            val ma = ColorMatrix().apply {
-                setSaturation(0f)
+            val bitmapPaint = Paint().apply {
+                isAntiAlias = true
+                isFilterBitmap = true
+                colorFilter = ColorMatrixColorFilter(ColorMatrix().apply {
+                    setSaturation(0f)
+                })
             }
+
+            val isLandscape = it.width > it.height
 
             val width = it.width
             val height = it.height
 
-            val calculatedHeight = (height.toFloat() / width.toFloat()) * WIDTH_RESIZE
-
             val srcRect = Rect(0, 0, width, height)
-            val destRect = RectF(0F, 0F, WIDTH_RESIZE, calculatedHeight)
+            val destRect = calculateDestinationBoundary(width, height, isLandscape)
 
-            canvas.drawBitmap(it, srcRect, destRect, Paint().apply {
-                isAntiAlias = true
-                isFilterBitmap = true
-                colorFilter = ColorMatrixColorFilter(ma)
-            })
+            with(canvas) {
+                if (isLandscape) {
+                    withTranslation(0F, destRect.width()) {
+                        withRotation(-90F, 0F, 0F) {
+                            drawBitmap(it, srcRect, destRect, bitmapPaint)
+                        }
+                    }
+                } else {
+                    drawBitmap(it, srcRect, destRect, bitmapPaint)
+                }
+            }
+        }
+    }
+
+    private fun calculateDestinationBoundary(width: Int, height: Int, isLandscape: Boolean): RectF {
+        val calculated = if (!isLandscape) {
+            (height.toFloat() / width.toFloat()) * WIDTH_RESIZE
+        } else {
+            (width.toFloat() / height.toFloat()) * WIDTH_RESIZE
+        }
+
+        return  if(!isLandscape) {
+            RectF(0F, 0F, WIDTH_RESIZE, calculated)
+        } else {
+            RectF(0F, 0F, calculated, WIDTH_RESIZE)
         }
     }
 
