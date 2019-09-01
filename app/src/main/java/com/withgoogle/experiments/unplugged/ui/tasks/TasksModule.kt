@@ -76,17 +76,19 @@ class TasksModule(val tasks: List<TaskItem>): PdfModule {
                     }
                     translate(0F, descriptionHeight + 2F)
                     drawText(timeRelative, TASKS_MARGIN, timeHeight, timeTextPaint)
-                }
+                } ?: translate(0F,descriptionHeight + 2F)
 
-                translate(0F, 14F)
+                translate(0F, 10F)
             }
 
-            val emptyTodos = data?.let { abs(it.size - 9) } ?: 9
+            val emptyTodos = data?.let { if (it.size < 7) 3 else abs(9 - it.size) } ?: 3
 
-            for(i in 0..emptyTodos) {
-                drawCircle(2.9F, 8.5F, 2.9F, circlePaint)
+            if (emptyTodos > 0) {
+                for (i in 0 until emptyTodos) {
+                    drawCircle(2.9F, 8.5F, 2.9F, circlePaint)
 
-                translate(0F, 14F)
+                    translate(0F, 20F)
+                }
             }
         }
     }
