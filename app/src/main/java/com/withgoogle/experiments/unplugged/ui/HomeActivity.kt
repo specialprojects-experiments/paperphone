@@ -1,7 +1,6 @@
 package com.withgoogle.experiments.unplugged.ui
 
 import android.Manifest
-import android.R.attr.button
 import android.accounts.AccountManager
 import android.accounts.AccountManagerCallback
 import android.app.Activity
@@ -11,7 +10,6 @@ import android.graphics.Rect
 import android.os.Bundle
 import android.view.TouchDelegate
 import android.view.View
-import android.view.ViewParent
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -55,7 +53,6 @@ import com.withgoogle.experiments.unplugged.ui.widget.ModuleView
 import com.withgoogle.experiments.unplugged.util.bindView
 import com.withgoogle.experiments.unplugged.util.weatherFormat
 import timber.log.Timber
-
 
 class HomeActivity : AppCompatActivity() {
     private val ACCOUNT_REQUEST = 0x2
@@ -395,8 +392,8 @@ class HomeActivity : AppCompatActivity() {
                         PaperAppModule(AppState.paperAppRes.value ?: R.drawable.pigeon_origami), !contactlessView.isChecked)
             ),
                 if (mapsView.isChecked) MapsModule(this@HomeActivity,
-                    origin = AppState.origin.value?.let { it } ?: Location(51.5101243, -0.136357),
-                    destination = AppState.destination.value?.let { it } ?: Location(51.5223533, -0.1314477)) else null,
+                    origin = AppState.origin.value?.let { it } ?: Location(51.5101243, -0.136357, ""),
+                    destination = AppState.destination.value?.let { it } ?: Location(51.5223533, -0.1314477, "")) else null,
                 if (contactlessView.isChecked) ContactlessModule() else null
             )
 

@@ -72,7 +72,7 @@ class MapsActivity: AppCompatActivity() {
         val destination = AppState.destination.value
 
         if (destination != null) {
-            reverseGeocode(destination, destinationView)
+            reverseGeocode(destination.latitude, destination.longitude, destinationView)
         } else {
             destinationView.text = "Tap here to search for a place"
         }
@@ -99,11 +99,11 @@ class MapsActivity: AppCompatActivity() {
             val location = locationResult.locations[0]
 
             if (AppState.origin.value == null) {
-                AppState.origin.value = Location(location.latitude, location.longitude)
+                AppState.origin.value = Location(location.latitude, location.longitude, "")
             }
 
             AppState.origin.value?.let {
-                reverseGeocode(Location(it.latitude, it.longitude), originView)
+                reverseGeocode(it.latitude, it.longitude, originView)
             }
         }
     }
@@ -113,13 +113,13 @@ class MapsActivity: AppCompatActivity() {
             if (requestCode == DESTINATION_REQ) {
                 val result = data?.let { Autocomplete.getPlaceFromIntent(it) }
                 result?.let { place ->
-                    AppState.destination.value = place.latLng?.let { Location(it.latitude, it.longitude) }
+                    AppState.destination.value = place.latLng?.let { Location(it.latitude, it.longitude, place.address ?: "") }
                     destinationView.text = "${place.address}"
                 }
             } else if(requestCode == ORIGIN_REQ) {
                 val result = data?.let { Autocomplete.getPlaceFromIntent(it) }
                 result?.let { place ->
-                    AppState.origin.value = place.latLng?.let { Location(it.latitude, it.longitude) }
+                    AppState.origin.value = place.latLng?.let { Location(it.latitude, it.longitude, place.address ?: "") }
                     originView.text = "${place.address}"
                 }
             }
@@ -137,14 +137,14 @@ class MapsActivity: AppCompatActivity() {
         fusedLocationClient.removeLocationUpdates(locationCallback)
     }
 
-    private fun reverseGeocode(location: Location, target: TextView) {
+    private fun reverseGeocode(latitude: Double, longitude: Double, target: TextView) {
         CoroutineScope(Dispatchers.Main).launch {
             val address = withContext(Dispatchers.IO) {
                 val geocoder = Geocoder(this@MapsActivity)
 
                 var addresses: List<Address> = emptyList()
                 try {
-                    addresses = geocoder.getFromLocation(location.latitude, location.longitude, 1)
+                    addresses = geocoder.getFromLocation(latitude, longitude, 1)
                 } catch (ioException: IOException) {
                     Timber.e(ioException, "Service unavailable")
                 } catch (illegalArgumentException: IllegalArgumentException) {
@@ -161,6 +161,7 @@ class MapsActivity: AppCompatActivity() {
 
             address?.let {
                 target.text = it.getAddressLine(0)
+                AppState.origin.value = Location(latitude, longitude, it.getAddressLine(0))
             }
         }
     }

@@ -9,8 +9,6 @@ import android.graphics.Color
 import android.graphics.ColorMatrix
 import android.graphics.ColorMatrixColorFilter
 import android.graphics.Paint
-import android.location.Address
-import android.location.Geocoder
 import androidx.core.graphics.withSave
 import androidx.core.graphics.withTranslation
 import com.withgoogle.experiments.unplugged.R
@@ -20,7 +18,6 @@ import com.withgoogle.experiments.unplugged.model.Location
 import com.withgoogle.experiments.unplugged.ui.PdfModule
 import okhttp3.Request
 import timber.log.Timber
-import java.io.IOException
 
 //private const val MAP_SIZE = 493F
 private const val DIRECTION_INFO_WIDTH = 256F
@@ -83,35 +80,19 @@ class MapsModule(val context: Context, val origin: Location, val destination: Lo
         }
     }
 
-    private fun getAddresses(location: Location): List<Address> {
-        val geocoder = Geocoder(context)
-
-        var addresses: List<Address> = emptyList()
-
-        try {
-            addresses = geocoder.getFromLocation(location.latitude, location.longitude, 1)
-        } catch (ioException: IOException) {
-            Timber.e(ioException, "Service unavailable")
-        } catch (illegalArgumentException: IllegalArgumentException) {
-            Timber.e(illegalArgumentException,"Invalid latitude/longitude")
-        }
-
-        return addresses
-    }
-
     private fun drawDirectionsInfo(canvas: Canvas, resources: Resources) {
         canvas.withTranslation(0F, 28F) {
-            val originAddress = getAddresses(origin)
-            val destAddress = getAddresses(destination)
+            val originAddress = origin.address
+            val destAddress = destination.address
 
             drawCircles(canvas, resources)
 
             // Draw origin text
             withTranslation(24F, 0F) {
-                drawDirectionAndAddress(canvas,"LEAVING FROM", originAddress[0], resources)
+                drawDirectionAndAddress(canvas,"LEAVING FROM", originAddress, resources)
 
                 translate(0F, 37F)
-                drawDirectionAndAddress(canvas,"GOING TO", destAddress[0], resources)
+                drawDirectionAndAddress(canvas,"GOING TO", destAddress, resources)
             }
         }
     }
@@ -174,7 +155,7 @@ class MapsModule(val context: Context, val origin: Location, val destination: Lo
         }
     }
 
-    private fun drawDirectionAndAddress(canvas: Canvas, label: String, address: Address, resources: Resources) {
+    private fun drawDirectionAndAddress(canvas: Canvas, label: String, address: String, resources: Resources) {
         val directionTextPaint = Paint().apply {
             textSize = 6F
             color = Color.BLACK
@@ -199,7 +180,10 @@ class MapsModule(val context: Context, val origin: Location, val destination: Lo
             val placeFM = placeTextPaint.fontMetrics
             val placeheight = placeFM.descent - placeFM.ascent
 
-            drawText("${address.thoroughfare ?: address.subThoroughfare ?: address.featureName}, ${address.postalCode}", 0F, placeheight, placeTextPaint)
+            val addressSplitted = address.split(",")
+            drawText(addressSplitted[0], 0F, placeheight, placeTextPaint)
+
+            drawText("${addressSplitted[1].trim()}, ${addressSplitted[2]}", 0F, placeheight + 10F, placeTextPaint)
         }
     }
 
