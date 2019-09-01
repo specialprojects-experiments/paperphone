@@ -39,6 +39,9 @@ class MapsActivity: AppCompatActivity() {
     private val originView by bindView<TextView>(R.id.current_location)
     private val destinationView by bindView<TextView>(R.id.destination_location)
 
+    private val originContainer by bindView<View>(R.id.origin_container)
+    private val destinationContainer by bindView<View>(R.id.destination_container)
+
     @SuppressLint("MissingPermission")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,11 +52,11 @@ class MapsActivity: AppCompatActivity() {
             isChecked = true
         }
 
-        destinationView.setOnClickListener {
+        destinationContainer.setOnClickListener {
             launchPlacesPicker(DESTINATION_REQ)
         }
 
-        originView.setOnClickListener {
+        originContainer.setOnClickListener {
             launchPlacesPicker(ORIGIN_REQ)
         }
 
