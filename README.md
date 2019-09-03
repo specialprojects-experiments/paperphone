@@ -1,6 +1,4 @@
 # Paper Phone
-Paper phone experimental android app
-
 
 A printable Paper Phone which helps you take a break away from your digital world
 
