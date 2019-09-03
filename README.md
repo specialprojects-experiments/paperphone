@@ -2,6 +2,8 @@
 
 A printable Paper Phone which helps you take a break away from your digital world
 
+![Paper Phone Image](190807PaperPhoneStills295-Edit.jpg)
+
 
 A lot of people feel that they spend too much time on their phones and struggle to find a balance with technology.
 
