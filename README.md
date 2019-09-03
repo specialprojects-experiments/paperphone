@@ -16,5 +16,6 @@ We hope this little experiment can help you try a digital detox from technology 
 Paper Phone is an experimental open source Android app which is available to try right now. All of the code is available on Github for people to play with and hopefully adapt and evolve! 
 
 
-https://play.google.com/store/apps/details?id=com.withgoogle.experiments.unplugged
-www.specialprojects.studio
+[Try the app on the Google Play Store](https://play.google.com/store/apps/details?id=com.withgoogle.experiments.unplugged)
+
+[Special Projects](www.specialprojects.studio)
