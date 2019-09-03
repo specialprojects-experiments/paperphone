@@ -1,4 +1,4 @@
-# paperphone
+# Paper Phone
 Paper phone experimental android app
 
 
