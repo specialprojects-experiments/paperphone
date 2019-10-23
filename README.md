@@ -19,4 +19,6 @@ Paper Phone is an experimental open source Android app which is available to try
 
 [Try the app on the Google Play Store](https://play.google.com/store/apps/details?id=com.withgoogle.experiments.unplugged)
 
-[Special Projects](www.specialprojects.studio)
+[Read more on Experiments with Google](https://experiments.withgoogle.com/paper-phone)
+
+[Find out even more on our site](http://specialprojects.studio/project/paper-phone)
