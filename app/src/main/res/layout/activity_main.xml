@@ -1,170 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:paddingTop="52dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:scrollbars="vertical"
     tools:context=".ui.HomeActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/person_name"
-            style="@style/Title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textAllCaps="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Gonçalo's phone" />
-
-        <TextView
-            android:id="@+id/selected_date"
-            style="@style/Subtitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/person_name"
-            tools:text="Monday 22nd, July" />
-
-        <ImageView
-            android:id="@+id/help"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:layout_marginStart="24dp"
-            android:src="@drawable/ic_help_outline_black_24dp"
-            app:layout_constraintBottom_toTopOf="@+id/selected_date"
-            app:layout_constraintStart_toEndOf="@+id/person_name"
-            app:layout_constraintTop_toTopOf="@+id/person_name" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
     <LinearLayout
-        android:paddingTop="80dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal">
+        android:orientation="vertical"
+        android:paddingTop="52dp">
 
-        <com.withgoogle.experiments.unplugged.ui.widget.ModuleView
-            android:id="@+id/maps"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <com.withgoogle.experiments.unplugged.ui.widget.ModuleView
-            android:layout_marginStart="@dimen/dashboard_item_margin"
-            android:id="@+id/contacts"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/person_name"
+                style="@style/Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textAllCaps="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Gonçalo's phone" />
 
-        <com.withgoogle.experiments.unplugged.ui.widget.ModuleView
-            android:layout_marginStart="@dimen/dashboard_item_margin"
-            android:id="@+id/calendar"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/selected_date"
+                style="@style/Subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/person_name"
+                tools:text="Monday 22nd, July" />
 
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/help"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginStart="24dp"
+                android:src="@drawable/ic_help_outline_black_24dp"
+                app:layout_constraintBottom_toTopOf="@+id/selected_date"
+                app:layout_constraintStart_toEndOf="@+id/person_name"
+                app:layout_constraintTop_toTopOf="@+id/person_name" />
 
-    <LinearLayout
-        android:paddingTop="24dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal">
-
-        <com.withgoogle.experiments.unplugged.ui.widget.ModuleView
-            android:id="@+id/weather"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content" />
-
-        <com.withgoogle.experiments.unplugged.ui.widget.ModuleView
-            android:layout_marginStart="@dimen/dashboard_item_margin"
-            android:id="@+id/tasks"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content" />
-
-        <com.withgoogle.experiments.unplugged.ui.widget.ModuleView
-            android:layout_marginStart="@dimen/dashboard_item_margin"
-            android:id="@+id/notes"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:paddingTop="24dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal">
-
-        <com.withgoogle.experiments.unplugged.ui.widget.ModuleView
-            android:id="@+id/photos"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content" />
-
-        <com.withgoogle.experiments.unplugged.ui.widget.ModuleView
-            android:id="@+id/contactless"
-            android:layout_marginStart="@dimen/dashboard_item_margin"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content" />
-
-        <com.withgoogle.experiments.unplugged.ui.widget.ModuleView
-            android:id="@+id/paper_apps"
-            android:layout_marginStart="@dimen/dashboard_item_margin"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content" />
-
-    </LinearLayout>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingBottom="24dp">
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
-            android:layout_gravity="bottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:orientation="vertical">
+            android:paddingTop="80dp">
 
-            <TextView
-                android:layout_marginTop="48dp"
-                android:layout_width="wrap_content"
+            <com.withgoogle.experiments.unplugged.ui.widget.ModuleView
+                android:id="@+id/maps"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content" />
+
+            <com.withgoogle.experiments.unplugged.ui.widget.ModuleView
+                android:id="@+id/contacts"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/module_info"
-                android:textSize="14.2sp"
-                android:textColor="@color/black"
-                android:gravity="center_horizontal"
-                android:text="@string/global_instructions"
-            />
+                android:layout_marginStart="@dimen/dashboard_item_margin" />
 
-            <TextView
-                android:layout_marginTop="12dp"
-                android:id="@+id/selected_account"
-                tools:text="goncalo@waterdog.mobi"
-                android:textSize="10sp"
-                android:textColor="@color/black"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <Button
-                android:layout_marginTop="16dp"
-                android:id="@+id/generatePdf"
-                android:text="@string/print"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+            <com.withgoogle.experiments.unplugged.ui.widget.ModuleView
+                android:id="@+id/calendar"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dashboard_item_margin" />
 
         </LinearLayout>
 
-    </FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:paddingTop="24dp">
 
+            <com.withgoogle.experiments.unplugged.ui.widget.ModuleView
+                android:id="@+id/weather"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content" />
 
-</LinearLayout>
+            <com.withgoogle.experiments.unplugged.ui.widget.ModuleView
+                android:id="@+id/tasks"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dashboard_item_margin" />
+
+            <com.withgoogle.experiments.unplugged.ui.widget.ModuleView
+                android:id="@+id/notes"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dashboard_item_margin" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:paddingTop="24dp">
+
+            <com.withgoogle.experiments.unplugged.ui.widget.ModuleView
+                android:id="@+id/photos"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content" />
+
+            <com.withgoogle.experiments.unplugged.ui.widget.ModuleView
+                android:id="@+id/contactless"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dashboard_item_margin" />
+
+            <com.withgoogle.experiments.unplugged.ui.widget.ModuleView
+                android:id="@+id/paper_apps"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dashboard_item_margin" />
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_marginTop="104dp"
+            android:layout_marginBottom="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/module_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="@string/global_instructions"
+                    android:textColor="@color/black"
+                    android:textSize="14.2sp" />
+
+                <TextView
+                    android:id="@+id/selected_account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:textColor="@color/black"
+                    android:textSize="10sp"
+                    tools:text="goncalo@waterdog.mobi" />
+
+                <Button
+                    android:id="@+id/generatePdf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/print" />
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+    </LinearLayout>
+</ScrollView>
