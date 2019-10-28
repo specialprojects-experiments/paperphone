@@ -3,6 +3,8 @@ package com.withgoogle.experiments.unplugged.ui
 import android.Manifest
 import android.accounts.AccountManager
 import android.accounts.AccountManagerCallback
+import android.accounts.AuthenticatorException
+import android.accounts.OperationCanceledException
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -53,6 +55,7 @@ import com.withgoogle.experiments.unplugged.ui.widget.ModuleView
 import com.withgoogle.experiments.unplugged.util.bindView
 import com.withgoogle.experiments.unplugged.util.weatherFormat
 import timber.log.Timber
+import java.io.IOException
 
 class HomeActivity : AppCompatActivity() {
     private val ACCOUNT_REQUEST = 0x2
@@ -328,13 +331,21 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private val callback = AccountManagerCallback<Bundle> {
-        val token = it.result.getString(AccountManager.KEY_AUTHTOKEN)
+        try {
+            val token = it.result.getString(AccountManager.KEY_AUTHTOKEN)
 
-        PaperPhoneApp.obtain(this).taskToken = token
+            PaperPhoneApp.obtain(this).taskToken = token
 
-        startActivity(Intent(this, TaskListActivity::class.java))
+            startActivity(Intent(this, TaskListActivity::class.java))
 
-        Timber.d("Tasks token: $token")
+            Timber.d("Tasks token: $token")
+        } catch (e: OperationCanceledException) {
+            Timber.e(e,"Operation canceled")
+        } catch (e: AuthenticatorException) {
+            Timber.e(e, "Authenticator failed")
+        } catch (e: IOException) {
+            Timber.e(e,"Unable to connect")
+        }
     }
 
     private fun tokenForTasks() {
