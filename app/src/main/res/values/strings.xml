@@ -8,7 +8,7 @@
     <string name="tasks_info">Choose the task lists you want\nto print to your Paper Phone</string>
     <string name="notes_info">An empty space will be added to your\nPaper Phone to capture\nthoughts and ideas</string>
     <string name="photos_info">Add a screenshot or\npicture to your Paper Phone</string>
-    <string name="contactless_info">Cut marks will be added to\nyour Paper Phone for you\no store a contactless card</string>
+    <string name="contactless_info">Cut marks will be added to\nyour Paper Phone for you\nto store a contactless card</string>
     <string name="paper_apps_info">Choose a Paper App to print\nto your Paper Phone</string>
     <string name="item_calendar">Calendar</string>
     <string name="item_contacts">Contacts</string>
