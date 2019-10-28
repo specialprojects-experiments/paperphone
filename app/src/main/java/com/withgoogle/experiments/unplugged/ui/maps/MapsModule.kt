@@ -183,7 +183,9 @@ class MapsModule(val context: Context, val origin: Location, val destination: Lo
             val addressSplitted = address.split(",")
             drawText(addressSplitted[0], 0F, placeheight, placeTextPaint)
 
-            drawText("${addressSplitted[1].trim()}, ${addressSplitted[2]}", 0F, placeheight + 10F, placeTextPaint)
+            if (addressSplitted.size > 2) {
+                drawText("${addressSplitted[1].trim()}, ${addressSplitted[2]}", 0F, placeheight + 10F, placeTextPaint)
+            }
         }
     }
 
