@@ -30,19 +30,23 @@ class GoogleDirections {
             response.body()?.use {
                 val result = gson.fromJson(it.charStream(), Result::class.java)
 
-                val encodedPolyline = result.routes[0].overview_polyline.points
-
-                Timber.d(encodedPolyline)
-
                 val staticMapUrl = HttpUrl.get("https://maps.googleapis.com/maps/api/staticmap")
 
-                staticMapUrl.newBuilder()
+                val mapBuilder = staticMapUrl.newBuilder()
                     .addEncodedQueryParameter("size", "494x494")
-                    .addEncodedQueryParameter("path", "weight:2|color:black|enc:$encodedPolyline")
                     .addEncodedQueryParameter("markers", "icon:https://media.designersfriend.co.uk/sps/media/uploads/work/media/a-extra-small-38891.png|$origin")
                     .addEncodedQueryParameter("markers", "icon:https://media.designersfriend.co.uk/sps/media/uploads/work/media/b-extra-small-38903.png|$destination")
                     .addQueryParameter("key", BuildConfig.GMAPS_API_KEY)
-                    .build().toString()
+
+                if (result.routes.isNotEmpty()) {
+                    val encodedPolyline = result.routes[0].overview_polyline.points
+
+                    Timber.d(encodedPolyline)
+
+                    mapBuilder.addEncodedQueryParameter("path", "weight:2|color:black|enc:$encodedPolyline")
+                }
+
+                mapBuilder.build().toString()
             }
         } else {
             null
