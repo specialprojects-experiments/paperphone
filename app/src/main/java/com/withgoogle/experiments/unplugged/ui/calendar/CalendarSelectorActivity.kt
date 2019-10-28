@@ -66,7 +66,6 @@ class CalendarSelectorActivity: AppCompatActivity() {
                 val calendars = CalendarImporter(this).calendars(account)
 
                 calendarAdapter.changeData(calendars
-                    .filter{ it.eventsCount > 0 }
                     .map { CalendarModel(it, CalendarDataSource.events.containsKey(it.id)) })
             }
         })
