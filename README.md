@@ -16,6 +16,22 @@ We hope this little experiment can help you try a digital detox from technology 
 
 Paper Phone is an experimental open source Android app which is available to try right now. All of the code is available on Github for people to play with and hopefully adapt and evolve! 
 
+Services:
+* [OpenWeather](https://openweathermap.org/api)
+* [Directions](https://developers.google.com/maps/documentation/directions/start)
+* [Static Maps](https://developers.google.com/maps/documentation/maps-static/intro)
+* [Places](https://developers.google.com/places/web-service/intro)
+* [Tasks](https://developers.google.com/tasks/)
+
+Android APIs:
+* [PdfRenderer](https://developer.android.com/reference/android/graphics/pdf/PdfRenderer) - Rendering PDFs
+* [ContentProvider](https://developer.android.com/guide/topics/providers/content-providers) - Read local contacts and calendar events
+* [Android Printing Framework](https://developer.android.com/training/printing) - Printing
+
+External libraries:
+* [OkHttp](https://square.github.io/okhttp/)
+* [Room](https://developer.android.com/topic/libraries/architecture/room)
+* [Lottie](http://airbnb.io/lottie/)
 
 [Try the app on the Google Play Store](https://play.google.com/store/apps/details?id=com.withgoogle.experiments.unplugged)
 
